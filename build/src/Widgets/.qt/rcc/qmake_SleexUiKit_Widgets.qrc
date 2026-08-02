@@ -1,6 +1,0 @@
-<RCC>
-  <qresource prefix="/qt/qml/SleexUiKit/Widgets">
-    <file alias="qmldir">/home/ardox/Documents/axos/sleex-ui-kit/build/qml/SleexUiKit/Widgets/qmldir</file>
-  </qresource>
-</RCC>
-

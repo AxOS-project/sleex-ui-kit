@@ -1,8 +1,0 @@
-SleexUiKitWidgets_autogen/timestamp: \
-	/home/ardox/Documents/axos/sleex-ui-kit/build/src/Widgets/SleexUiKitWidgetsplugin_SleexUiKit_WidgetsPlugin_in.cpp \
-	/home/ardox/Documents/axos/sleex-ui-kit/src/Widgets/CMakeLists.txt \
-	/usr/lib/cmake/Qt6Core/Qt6CoreConfigureFileTemplate.in \
-	/usr/lib/cmake/Qt6Qml/Qt6QmlModuleDirMappingTemplate.qrc.in \
-	/usr/lib/cmake/Qt6Qml/Qt6QmlPluginTemplate.cpp.in \
-	/usr/lib/cmake/Qt6Qml/Qt6qmldirTemplate.cmake.in \
-	/usr/bin/cmake

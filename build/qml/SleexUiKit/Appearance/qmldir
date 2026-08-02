@@ -1,7 +1,0 @@
-module SleexUiKit.Appearance
-linktarget SleexUiKitAppearanceplugin
-optional plugin SleexUiKitAppearanceplugin
-classname SleexUiKit_AppearancePlugin
-typeinfo SleexUiKitAppearance.qmltypes
-prefer :/qt/qml/SleexUiKit/Appearance/
-

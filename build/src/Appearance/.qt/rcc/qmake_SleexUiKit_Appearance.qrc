@@ -1,6 +1,0 @@
-<RCC>
-  <qresource prefix="/qt/qml/SleexUiKit/Appearance">
-    <file alias="qmldir">/home/ardox/Documents/axos/sleex-ui-kit/build/qml/SleexUiKit/Appearance/qmldir</file>
-  </qresource>
-</RCC>
-
