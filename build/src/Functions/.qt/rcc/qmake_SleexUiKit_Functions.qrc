@@ -1,0 +1,6 @@
+<RCC>
+  <qresource prefix="/qt/qml/SleexUiKit/Functions">
+    <file alias="qmldir">/home/ardox/Documents/axos/sleex-ui-kit/build/qml/SleexUiKit/Functions/qmldir</file>
+  </qresource>
+</RCC>
+

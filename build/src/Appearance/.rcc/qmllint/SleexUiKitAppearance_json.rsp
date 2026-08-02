@@ -1,0 +1,13 @@
+--bare
+-I
+/home/ardox/Documents/axos/sleex-ui-kit/build/qml
+-I
+/home/ardox/Documents/axos/sleex-ui-kit/build/qml/SleexUiKit/Appearance
+-I
+/home/ardox/Documents/axos/sleex-ui-kit/build/src/Appearance
+-I
+/usr/lib/qt6/qml
+--resource
+/home/ardox/Documents/axos/sleex-ui-kit/build/src/Appearance/.qt/rcc/qmake_SleexUiKit_Appearance.qrc
+--json
+/home/ardox/Documents/axos/sleex-ui-kit/build/SleexUiKitAppearance_qmllint.json

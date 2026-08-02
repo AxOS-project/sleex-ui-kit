@@ -1,0 +1,9 @@
+[<SLASH>home<SLASH>ardox<SLASH>Documents<SLASH>axos<SLASH>sleex-ui-kit<SLASH>src<SLASH>Functions]
+importPaths="/home/ardox/Documents/axos/sleex-ui-kit/build/qml:/home/ardox/Documents/axos/sleex-ui-kit/build/qml/SleexUiKit/Functions:/home/ardox/Documents/axos/sleex-ui-kit/build:/usr/lib/qt6/qml"
+resourceFiles="/home/ardox/Documents/axos/sleex-ui-kit/build/src/Functions/.qt/rcc/qmake_SleexUiKit_Functions.qrc"
+[<SLASH>home<SLASH>ardox<SLASH>Documents<SLASH>axos<SLASH>sleex-ui-kit<SLASH>src<SLASH>Appearance]
+importPaths="/home/ardox/Documents/axos/sleex-ui-kit/build/qml:/home/ardox/Documents/axos/sleex-ui-kit/build/qml/SleexUiKit/Appearance:/home/ardox/Documents/axos/sleex-ui-kit/build:/usr/lib/qt6/qml"
+resourceFiles="/home/ardox/Documents/axos/sleex-ui-kit/build/src/Appearance/.qt/rcc/qmake_SleexUiKit_Appearance.qrc"
+[<SLASH>home<SLASH>ardox<SLASH>Documents<SLASH>axos<SLASH>sleex-ui-kit<SLASH>src<SLASH>Widgets]
+importPaths="/home/ardox/Documents/axos/sleex-ui-kit/build/qml:/home/ardox/Documents/axos/sleex-ui-kit/build/qml/SleexUiKit/Widgets:/home/ardox/Documents/axos/sleex-ui-kit/build:/usr/lib/qt6/qml"
+resourceFiles="/home/ardox/Documents/axos/sleex-ui-kit/build/src/Widgets/.qt/rcc/qmake_SleexUiKit_Widgets.qrc:/home/ardox/Documents/axos/sleex-ui-kit/build/src/Widgets/.qt/rcc/SleexUiKitWidgets_raw_qml_0.qrc"

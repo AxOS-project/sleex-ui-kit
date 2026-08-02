@@ -1,0 +1,10 @@
+{
+	"InstallScripts" : 
+	[
+		"/home/ardox/Documents/axos/sleex-ui-kit/build/cmake_install.cmake",
+		"/home/ardox/Documents/axos/sleex-ui-kit/build/src/Functions/cmake_install.cmake",
+		"/home/ardox/Documents/axos/sleex-ui-kit/build/src/Appearance/cmake_install.cmake",
+		"/home/ardox/Documents/axos/sleex-ui-kit/build/src/Widgets/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

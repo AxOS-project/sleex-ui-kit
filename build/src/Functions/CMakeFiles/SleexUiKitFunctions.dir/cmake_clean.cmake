@@ -1,0 +1,42 @@
+file(REMOVE_RECURSE
+  "../../qml/SleexUiKit/Functions/SleexUiKitFunctions.qmltypes"
+  ".qt/rcc/qrc_qmake_SleexUiKit_Functions.cpp"
+  "CMakeFiles/SleexUiKitFunctions.dir/link.d"
+  "CMakeFiles/SleexUiKitFunctions_autogen.dir/AutogenUsed.txt"
+  "CMakeFiles/SleexUiKitFunctions_autogen.dir/ParseCache.txt"
+  "SleexUiKitFunctions_autogen"
+  "CMakeFiles/SleexUiKitFunctions.dir/.qt/rcc/qrc_qmake_SleexUiKit_Functions.cpp.o"
+  "CMakeFiles/SleexUiKitFunctions.dir/.qt/rcc/qrc_qmake_SleexUiKit_Functions.cpp.o.d"
+  "CMakeFiles/SleexUiKitFunctions.dir/ColorUtils.cpp.o"
+  "CMakeFiles/SleexUiKitFunctions.dir/ColorUtils.cpp.o.d"
+  "CMakeFiles/SleexUiKitFunctions.dir/DesktopUtils.cpp.o"
+  "CMakeFiles/SleexUiKitFunctions.dir/DesktopUtils.cpp.o.d"
+  "CMakeFiles/SleexUiKitFunctions.dir/FileUtils.cpp.o"
+  "CMakeFiles/SleexUiKitFunctions.dir/FileUtils.cpp.o.d"
+  "CMakeFiles/SleexUiKitFunctions.dir/Fuzzy.cpp.o"
+  "CMakeFiles/SleexUiKitFunctions.dir/Fuzzy.cpp.o.d"
+  "CMakeFiles/SleexUiKitFunctions.dir/Lavendist.cpp.o"
+  "CMakeFiles/SleexUiKitFunctions.dir/Lavendist.cpp.o.d"
+  "CMakeFiles/SleexUiKitFunctions.dir/ObjectUtils.cpp.o"
+  "CMakeFiles/SleexUiKitFunctions.dir/ObjectUtils.cpp.o.d"
+  "CMakeFiles/SleexUiKitFunctions.dir/SleexUiKitFunctions_autogen/mocs_compilation.cpp.o"
+  "CMakeFiles/SleexUiKitFunctions.dir/SleexUiKitFunctions_autogen/mocs_compilation.cpp.o.d"
+  "CMakeFiles/SleexUiKitFunctions.dir/StringUtils.cpp.o"
+  "CMakeFiles/SleexUiKitFunctions.dir/StringUtils.cpp.o.d"
+  "CMakeFiles/SleexUiKitFunctions.dir/plugin.cpp.o"
+  "CMakeFiles/SleexUiKitFunctions.dir/plugin.cpp.o.d"
+  "CMakeFiles/SleexUiKitFunctions.dir/sleexuikitfunctions_qmltyperegistrations.cpp.o"
+  "CMakeFiles/SleexUiKitFunctions.dir/sleexuikitfunctions_qmltyperegistrations.cpp.o.d"
+  "libSleexUiKitFunctions.pdb"
+  "libSleexUiKitFunctions.so"
+  "meta_types/SleexUiKitFunctions_json_file_list.txt"
+  "meta_types/SleexUiKitFunctions_json_file_list.txt.timestamp"
+  "meta_types/qt6sleexuikitfunctions_metatypes.json"
+  "meta_types/qt6sleexuikitfunctions_metatypes.json.gen"
+  "sleexuikitfunctions_qmltyperegistrations.cpp"
+)
+
+# Per-language clean rules from dependency scanning.
+foreach(lang CXX)
+  include(CMakeFiles/SleexUiKitFunctions.dir/cmake_clean_${lang}.cmake OPTIONAL)
+endforeach()

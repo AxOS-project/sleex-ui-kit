@@ -1,0 +1,121 @@
+{
+    "classes": [
+        {
+            "classInfos": [
+                {
+                    "name": "QML.Element",
+                    "value": "auto"
+                },
+                {
+                    "name": "QML.Singleton",
+                    "value": "true"
+                }
+            ],
+            "className": "Fuzzy",
+            "lineNumber": 9,
+            "methods": [
+                {
+                    "access": "public",
+                    "arguments": [
+                        {
+                            "name": "search",
+                            "type": "QString"
+                        },
+                        {
+                            "name": "target",
+                            "type": "QString"
+                        }
+                    ],
+                    "index": 0,
+                    "isConst": true,
+                    "lineNumber": 17,
+                    "name": "computeScore",
+                    "returnType": "double"
+                },
+                {
+                    "access": "public",
+                    "arguments": [
+                        {
+                            "name": "search",
+                            "type": "QString"
+                        },
+                        {
+                            "name": "target",
+                            "type": "QString"
+                        }
+                    ],
+                    "index": 1,
+                    "isConst": true,
+                    "lineNumber": 18,
+                    "name": "computeTextMatchScore",
+                    "returnType": "double"
+                },
+                {
+                    "access": "public",
+                    "arguments": [
+                        {
+                            "name": "target",
+                            "type": "QJSValue"
+                        }
+                    ],
+                    "index": 2,
+                    "isConst": true,
+                    "lineNumber": 20,
+                    "name": "prepare",
+                    "returnType": "QJSValue"
+                },
+                {
+                    "access": "public",
+                    "arguments": [
+                        {
+                            "name": "search",
+                            "type": "QString"
+                        },
+                        {
+                            "name": "targets",
+                            "type": "QJSValue"
+                        },
+                        {
+                            "name": "options",
+                            "type": "QJSValue"
+                        }
+                    ],
+                    "index": 3,
+                    "isConst": true,
+                    "lineNumber": 21,
+                    "name": "go",
+                    "returnType": "QJSValue"
+                },
+                {
+                    "access": "public",
+                    "arguments": [
+                        {
+                            "name": "search",
+                            "type": "QString"
+                        },
+                        {
+                            "name": "targets",
+                            "type": "QJSValue"
+                        }
+                    ],
+                    "index": 4,
+                    "isCloned": true,
+                    "isConst": true,
+                    "lineNumber": 21,
+                    "name": "go",
+                    "returnType": "QJSValue"
+                }
+            ],
+            "object": true,
+            "qualifiedClassName": "Fuzzy",
+            "superClasses": [
+                {
+                    "access": "public",
+                    "name": "QObject"
+                }
+            ]
+        }
+    ],
+    "inputFile": "Fuzzy.hpp",
+    "outputRevision": 69
+}

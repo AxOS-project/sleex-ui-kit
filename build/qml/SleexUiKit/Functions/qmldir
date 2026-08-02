@@ -1,0 +1,7 @@
+module SleexUiKit.Functions
+linktarget SleexUiKitFunctionsplugin
+optional plugin SleexUiKitFunctionsplugin
+classname SleexUiKit_FunctionsPlugin
+typeinfo SleexUiKitFunctions.qmltypes
+prefer :/qt/qml/SleexUiKit/Functions/
+

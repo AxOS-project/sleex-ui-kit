@@ -1,0 +1,8 @@
+/home/ardox/Documents/axos/sleex-ui-kit/build/src/Functions/SleexUiKitFunctions_autogen/include/../EWIEGA46WW/moc_ColorUtils.cpp.json
+/home/ardox/Documents/axos/sleex-ui-kit/build/src/Functions/SleexUiKitFunctions_autogen/include/../EWIEGA46WW/moc_DesktopUtils.cpp.json
+/home/ardox/Documents/axos/sleex-ui-kit/build/src/Functions/SleexUiKitFunctions_autogen/include/../EWIEGA46WW/moc_FileUtils.cpp.json
+/home/ardox/Documents/axos/sleex-ui-kit/build/src/Functions/SleexUiKitFunctions_autogen/include/../EWIEGA46WW/moc_Fuzzy.cpp.json
+/home/ardox/Documents/axos/sleex-ui-kit/build/src/Functions/SleexUiKitFunctions_autogen/include/../EWIEGA46WW/moc_Lavendist.cpp.json
+/home/ardox/Documents/axos/sleex-ui-kit/build/src/Functions/SleexUiKitFunctions_autogen/include/../EWIEGA46WW/moc_ObjectUtils.cpp.json
+/home/ardox/Documents/axos/sleex-ui-kit/build/src/Functions/SleexUiKitFunctions_autogen/include/../EWIEGA46WW/moc_StringUtils.cpp.json
+/home/ardox/Documents/axos/sleex-ui-kit/build/src/Functions/SleexUiKitFunctions_autogen/include/plugin.moc.json

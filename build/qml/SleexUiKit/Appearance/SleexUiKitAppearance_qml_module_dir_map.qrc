@@ -1,0 +1,6 @@
+<RCC>
+  <qresource prefix="/">
+    <file alias="/qt/qml/SleexUiKit/Appearance">/home/ardox/Documents/axos/sleex-ui-kit/build/qml/SleexUiKit/Appearance</file>
+
+  </qresource>
+</RCC>

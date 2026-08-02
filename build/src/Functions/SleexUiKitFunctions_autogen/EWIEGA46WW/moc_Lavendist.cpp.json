@@ -1,0 +1,66 @@
+{
+    "classes": [
+        {
+            "classInfos": [
+                {
+                    "name": "QML.Element",
+                    "value": "auto"
+                },
+                {
+                    "name": "QML.Singleton",
+                    "value": "true"
+                }
+            ],
+            "className": "Levendist",
+            "lineNumber": 11,
+            "methods": [
+                {
+                    "access": "public",
+                    "arguments": [
+                        {
+                            "name": "s1",
+                            "type": "QString"
+                        },
+                        {
+                            "name": "s2",
+                            "type": "QString"
+                        }
+                    ],
+                    "index": 0,
+                    "isConst": true,
+                    "lineNumber": 19,
+                    "name": "computeScore",
+                    "returnType": "double"
+                },
+                {
+                    "access": "public",
+                    "arguments": [
+                        {
+                            "name": "s1",
+                            "type": "QString"
+                        },
+                        {
+                            "name": "s2",
+                            "type": "QString"
+                        }
+                    ],
+                    "index": 1,
+                    "isConst": true,
+                    "lineNumber": 20,
+                    "name": "computeTextMatchScore",
+                    "returnType": "double"
+                }
+            ],
+            "object": true,
+            "qualifiedClassName": "Levendist",
+            "superClasses": [
+                {
+                    "access": "public",
+                    "name": "QObject"
+                }
+            ]
+        }
+    ],
+    "inputFile": "Lavendist.hpp",
+    "outputRevision": 69
+}

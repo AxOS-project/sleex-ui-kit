@@ -1,0 +1,12 @@
+-I
+/home/ardox/Documents/axos/sleex-ui-kit/build/qml
+-I
+/home/ardox/Documents/axos/sleex-ui-kit/build/qml/SleexUiKit/Functions
+-I
+/home/ardox/Documents/axos/sleex-ui-kit/build/src/Functions
+-I
+/usr/lib/qt6/qml
+--resource
+/home/ardox/Documents/axos/sleex-ui-kit/build/src/Functions/.qt/rcc/qmake_SleexUiKit_Functions.qrc
+--module
+SleexUiKit.Functions
