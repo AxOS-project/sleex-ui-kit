@@ -55,6 +55,9 @@ Some components have external runtime dependencies beyond the kit itself:
 You can test the kit after building it by running the included `test.qml` file in a `qmlscene` or a Quickshell instance:
 
 ```sh
-qml6 test.qml
+qs -p test.qml
 ```
+
+https://github.com/user-attachments/assets/7e10f46c-14c8-48f2-88e2-a04317152357
+
 
