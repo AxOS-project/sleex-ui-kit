@@ -30,6 +30,7 @@ Button {
     property color colBackgroundToggledHover: Appearance?.colors.colPrimaryHover ?? "#77699C"
     property color colRipple: Appearance?.colors.colLayer1Active ?? "#D6CEE2"
     property color colRippleToggled: Appearance?.colors.colPrimaryActive ?? "#D6CEE2"
+    property color colText: Appearance?.colors.colOnLayer1 ?? Appearance?.m3colors.m3onBackground ?? "#FFFFFF"
 
     property color buttonColor: root.enabled ? (root.toggled ? 
         (root.hovered ? colBackgroundToggledHover : 
@@ -181,5 +182,6 @@ Button {
 
     contentItem: StyledText {
         text: root.buttonText
+        color: root.colText
     }
 }
