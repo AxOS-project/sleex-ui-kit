@@ -1,6 +1,6 @@
 pkgname="sleex-ui-kit"
 pkgver="1.0"
-pkgrel="4"
+pkgrel="5"
 pkgdesc="UI kit with a collection of Qt components with Sleex design language"
 arch=("x86_64")
 depends=(
@@ -13,7 +13,7 @@ optdepends=(
 
 build() {
   rm -rf build/
-  cmake -B build -DCMAKE_BUILD_TYPE=Release
+  cmake -B build -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr
   cmake --build build -j$(nproc --ignore=2)
 }
 
