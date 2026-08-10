@@ -8,6 +8,7 @@ Item {
     property int    fillMode: Image.PreserveAspectCrop
     property bool   playing:  true
 
+    readonly property string resolvedSource: source.startsWith("/") ? "file://" + source : source
     readonly property bool isReady: _isAnimated 
         ? animImg.status === AnimatedImage.Ready
         : _isVideo
@@ -35,7 +36,7 @@ Item {
         id: staticImg
         anchors.fill: parent
         fillMode: root.fillMode
-        source: root._isAnimated || root._isVideo ? "" : root.source
+        source: root._isAnimated || root._isVideo ? "" : root.resolvedSource
         sourceSize: Qt.size(Screen.width * Screen.devicePixelRatio, Screen.height * Screen.devicePixelRatio)
         visible: !root._isAnimated && !root._isVideo
         cache: false
@@ -45,7 +46,7 @@ Item {
         id: animImg
         anchors.fill: parent
         fillMode: root.fillMode
-        source: root._isAnimated ? root.source : ""
+        source: root._isAnimated ? root.resolvedSource : ""
         sourceSize: Qt.size(Screen.width * Screen.devicePixelRatio, Screen.height * Screen.devicePixelRatio)
         visible: root._isAnimated
         playing: root._isAnimated && root.playing
@@ -54,7 +55,7 @@ Item {
 
     MediaPlayer {
         id: mediaplayer
-        source: root._isVideo ? (root.source.startsWith("/") ? "file://" + root.source : root.source) : ""
+        source: root._isVideo ? root.resolvedSource : ""
         loops: MediaPlayer.Infinite
         videoOutput: videoOutput
 
