@@ -9,7 +9,7 @@ Item {
     property bool colorize: false
     property color color
     property string source: ""
-    property string iconFolder: Qt.resolvedUrl(Quickshell.shellPath("assets/icons"))  // The folder to check first
+    property string iconFolder: "file://" + Quickshell.shellPath("assets/icons")  // The folder to check first
     width: 30
     height: 30
     
@@ -17,7 +17,10 @@ Item {
         id: iconImage
         anchors.fill: parent
         source: {
-            const fullPathWhenSourceIsIconName = iconFolder + "/" + root.source;
+            if (!root.source) return "";
+            const hasExtension = root.source.indexOf(".") !== -1;
+            const fileName = hasExtension ? root.source : root.source + ".svg";
+            const fullPathWhenSourceIsIconName = iconFolder + "/" + fileName;
             if (iconFolder && fullPathWhenSourceIsIconName) {
                 return fullPathWhenSourceIsIconName
             }
