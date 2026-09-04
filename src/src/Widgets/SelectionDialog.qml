@@ -14,6 +14,18 @@ Item {
     property int selectedId: choiceListView.currentIndex
     property var defaultChoice
 
+    function findDefaultChoiceIndex() {
+        if (root.defaultChoice === undefined || root.items === undefined || root.items === null)
+            return -1;
+
+        for (let i = 0; i < root.items.length; ++i) {
+            if (root.items[i] === root.defaultChoice)
+                return i;
+        }
+
+        return -1;
+    }
+
     signal canceled();
     signal selected(var result);
 
@@ -67,7 +79,7 @@ Item {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
                 clip: true
-                currentIndex: root.defaultChoice !== undefined ? root.items.indexOf(root.defaultChoice) : -1
+                currentIndex: root.findDefaultChoiceIndex()
 
                 model: ScriptModel {
                     id: choiceModel
