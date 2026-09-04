@@ -1,6 +1,6 @@
 pkgname="sleex-ui-kit"
 pkgver="1.0"
-pkgrel="6"
+pkgrel="7"
 pkgdesc="UI kit with a collection of Qt components with Sleex design language"
 arch=("x86_64")
 depends=(
