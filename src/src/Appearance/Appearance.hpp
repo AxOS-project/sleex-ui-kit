@@ -4,166 +4,215 @@
 #include <QColor>
 #include <QVector>
 #include <QString>
+#include <QVariantMap>
 #include <qqml.h>
 #include <QtQml/qqmlregistration.h>
 #include <QQmlComponent>
 
 class M3Colors : public QObject {
     Q_OBJECT
-    Q_PROPERTY(bool darkmode READ darkmode WRITE setDarkmode NOTIFY m3colorsChanged)
-    Q_PROPERTY(bool transparent READ transparent WRITE setTransparent NOTIFY m3colorsChanged)
-    Q_PROPERTY(QColor m3background READ m3background WRITE setM3background NOTIFY m3colorsChanged)
-    Q_PROPERTY(QColor m3onBackground READ m3onBackground WRITE setM3onBackground NOTIFY m3colorsChanged)
-    Q_PROPERTY(QColor m3surface READ m3surface WRITE setM3surface NOTIFY m3colorsChanged)
-    Q_PROPERTY(QColor m3surfaceDim READ m3surfaceDim WRITE setM3surfaceDim NOTIFY m3colorsChanged)
-    Q_PROPERTY(QColor m3surfaceBright READ m3surfaceBright WRITE setM3surfaceBright NOTIFY m3colorsChanged)
-    Q_PROPERTY(QColor m3surfaceContainerLowest READ m3surfaceContainerLowest WRITE setM3surfaceContainerLowest NOTIFY m3colorsChanged)
-    Q_PROPERTY(QColor m3surfaceContainerLow READ m3surfaceContainerLow WRITE setM3surfaceContainerLow NOTIFY m3colorsChanged)
-    Q_PROPERTY(QColor m3surfaceContainer READ m3surfaceContainer WRITE setM3surfaceContainer NOTIFY m3colorsChanged)
-    Q_PROPERTY(QColor m3surfaceContainerHigh READ m3surfaceContainerHigh WRITE setM3surfaceContainerHigh NOTIFY m3colorsChanged)
-    Q_PROPERTY(QColor m3surfaceContainerHighest READ m3surfaceContainerHighest WRITE setM3surfaceContainerHighest NOTIFY m3colorsChanged)
-    Q_PROPERTY(QColor m3onSurface READ m3onSurface WRITE setM3onSurface NOTIFY m3colorsChanged)
-    Q_PROPERTY(QColor m3surfaceVariant READ m3surfaceVariant WRITE setM3surfaceVariant NOTIFY m3colorsChanged)
-    Q_PROPERTY(QColor m3onSurfaceVariant READ m3onSurfaceVariant WRITE setM3onSurfaceVariant NOTIFY m3colorsChanged)
-    Q_PROPERTY(QColor m3inverseSurface READ m3inverseSurface WRITE setM3inverseSurface NOTIFY m3colorsChanged)
-    Q_PROPERTY(QColor m3inverseOnSurface READ m3inverseOnSurface WRITE setM3inverseOnSurface NOTIFY m3colorsChanged)
-    Q_PROPERTY(QColor m3outline READ m3outline WRITE setM3outline NOTIFY m3colorsChanged)
-    Q_PROPERTY(QColor m3outlineVariant READ m3outlineVariant WRITE setM3outlineVariant NOTIFY m3colorsChanged)
-    Q_PROPERTY(QColor m3shadow READ m3shadow WRITE setM3shadow NOTIFY m3colorsChanged)
-    Q_PROPERTY(QColor m3scrim READ m3scrim WRITE setM3scrim NOTIFY m3colorsChanged)
-    Q_PROPERTY(QColor m3primary READ m3primary WRITE setM3primary NOTIFY m3colorsChanged)
-    Q_PROPERTY(QColor m3onPrimary READ m3onPrimary WRITE setM3onPrimary NOTIFY m3colorsChanged)
-    Q_PROPERTY(QColor m3primaryContainer READ m3primaryContainer WRITE setM3primaryContainer NOTIFY m3colorsChanged)
-    Q_PROPERTY(QColor m3onPrimaryContainer READ m3onPrimaryContainer WRITE setM3onPrimaryContainer NOTIFY m3colorsChanged)
-    Q_PROPERTY(QColor m3secondary READ m3secondary WRITE setM3secondary NOTIFY m3colorsChanged)
-    Q_PROPERTY(QColor m3onSecondary READ m3onSecondary WRITE setM3onSecondary NOTIFY m3colorsChanged)
-    Q_PROPERTY(QColor m3secondaryContainer READ m3secondaryContainer WRITE setM3secondaryContainer NOTIFY m3colorsChanged)
-    Q_PROPERTY(QColor m3onSecondaryContainer READ m3onSecondaryContainer WRITE setM3onSecondaryContainer NOTIFY m3colorsChanged)
-    Q_PROPERTY(QColor m3tertiary READ m3tertiary WRITE setM3tertiary NOTIFY m3colorsChanged)
-    Q_PROPERTY(QColor m3onTertiary READ m3onTertiary WRITE setM3onTertiary NOTIFY m3colorsChanged)
-    Q_PROPERTY(QColor m3tertiaryContainer READ m3tertiaryContainer WRITE setM3tertiaryContainer NOTIFY m3colorsChanged)
-    Q_PROPERTY(QColor m3onTertiaryContainer READ m3onTertiaryContainer WRITE setM3onTertiaryContainer NOTIFY m3colorsChanged)
-    Q_PROPERTY(QColor m3error READ m3error WRITE setM3error NOTIFY m3colorsChanged)
-    Q_PROPERTY(QColor m3onError READ m3onError WRITE setM3onError NOTIFY m3colorsChanged)
-    Q_PROPERTY(QColor m3errorContainer READ m3errorContainer WRITE setM3errorContainer NOTIFY m3colorsChanged)
-    Q_PROPERTY(QColor m3onErrorContainer READ m3onErrorContainer WRITE setM3onErrorContainer NOTIFY m3colorsChanged)
+    Q_PROPERTY(bool darkmode READ darkmode WRITE setDarkmode NOTIFY darkmodeChanged)
+    Q_PROPERTY(bool transparent READ transparent WRITE setTransparent NOTIFY transparentChanged)
+    Q_PROPERTY(QColor m3background READ m3background WRITE setM3background NOTIFY m3backgroundChanged)
+    Q_PROPERTY(QColor m3onBackground READ m3onBackground WRITE setM3onBackground NOTIFY m3onBackgroundChanged)
+    Q_PROPERTY(QColor m3surface READ m3surface WRITE setM3surface NOTIFY m3surfaceChanged)
+    Q_PROPERTY(QColor m3surfaceDim READ m3surfaceDim WRITE setM3surfaceDim NOTIFY m3surfaceDimChanged)
+    Q_PROPERTY(QColor m3surfaceBright READ m3surfaceBright WRITE setM3surfaceBright NOTIFY m3surfaceBrightChanged)
+    Q_PROPERTY(QColor m3surfaceContainerLowest READ m3surfaceContainerLowest WRITE setM3surfaceContainerLowest NOTIFY m3surfaceContainerLowestChanged)
+    Q_PROPERTY(QColor m3surfaceContainerLow READ m3surfaceContainerLow WRITE setM3surfaceContainerLow NOTIFY m3surfaceContainerLowChanged)
+    Q_PROPERTY(QColor m3surfaceContainer READ m3surfaceContainer WRITE setM3surfaceContainer NOTIFY m3surfaceContainerChanged)
+    Q_PROPERTY(QColor m3surfaceContainerHigh READ m3surfaceContainerHigh WRITE setM3surfaceContainerHigh NOTIFY m3surfaceContainerHighChanged)
+    Q_PROPERTY(QColor m3surfaceContainerHighest READ m3surfaceContainerHighest WRITE setM3surfaceContainerHighest NOTIFY m3surfaceContainerHighestChanged)
+    Q_PROPERTY(QColor m3onSurface READ m3onSurface WRITE setM3onSurface NOTIFY m3onSurfaceChanged)
+    Q_PROPERTY(QColor m3surfaceVariant READ m3surfaceVariant WRITE setM3surfaceVariant NOTIFY m3surfaceVariantChanged)
+    Q_PROPERTY(QColor m3onSurfaceVariant READ m3onSurfaceVariant WRITE setM3onSurfaceVariant NOTIFY m3onSurfaceVariantChanged)
+    Q_PROPERTY(QColor m3inverseSurface READ m3inverseSurface WRITE setM3inverseSurface NOTIFY m3inverseSurfaceChanged)
+    Q_PROPERTY(QColor m3inverseOnSurface READ m3inverseOnSurface WRITE setM3inverseOnSurface NOTIFY m3inverseOnSurfaceChanged)
+    Q_PROPERTY(QColor m3outline READ m3outline WRITE setM3outline NOTIFY m3outlineChanged)
+    Q_PROPERTY(QColor m3outlineVariant READ m3outlineVariant WRITE setM3outlineVariant NOTIFY m3outlineVariantChanged)
+    Q_PROPERTY(QColor m3shadow READ m3shadow WRITE setM3shadow NOTIFY m3shadowChanged)
+    Q_PROPERTY(QColor m3scrim READ m3scrim WRITE setM3scrim NOTIFY m3scrimChanged)
+    Q_PROPERTY(QColor m3primary READ m3primary WRITE setM3primary NOTIFY m3primaryChanged)
+    Q_PROPERTY(QColor m3onPrimary READ m3onPrimary WRITE setM3onPrimary NOTIFY m3onPrimaryChanged)
+    Q_PROPERTY(QColor m3primaryContainer READ m3primaryContainer WRITE setM3primaryContainer NOTIFY m3primaryContainerChanged)
+    Q_PROPERTY(QColor m3onPrimaryContainer READ m3onPrimaryContainer WRITE setM3onPrimaryContainer NOTIFY m3onPrimaryContainerChanged)
+    Q_PROPERTY(QColor m3secondary READ m3secondary WRITE setM3secondary NOTIFY m3secondaryChanged)
+    Q_PROPERTY(QColor m3onSecondary READ m3onSecondary WRITE setM3onSecondary NOTIFY m3onSecondaryChanged)
+    Q_PROPERTY(QColor m3secondaryContainer READ m3secondaryContainer WRITE setM3secondaryContainer NOTIFY m3secondaryContainerChanged)
+    Q_PROPERTY(QColor m3onSecondaryContainer READ m3onSecondaryContainer WRITE setM3onSecondaryContainer NOTIFY m3onSecondaryContainerChanged)
+    Q_PROPERTY(QColor m3tertiary READ m3tertiary WRITE setM3tertiary NOTIFY m3tertiaryChanged)
+    Q_PROPERTY(QColor m3onTertiary READ m3onTertiary WRITE setM3onTertiary NOTIFY m3onTertiaryChanged)
+    Q_PROPERTY(QColor m3tertiaryContainer READ m3tertiaryContainer WRITE setM3tertiaryContainer NOTIFY m3tertiaryContainerChanged)
+    Q_PROPERTY(QColor m3onTertiaryContainer READ m3onTertiaryContainer WRITE setM3onTertiaryContainer NOTIFY m3onTertiaryContainerChanged)
+    Q_PROPERTY(QColor m3error READ m3error WRITE setM3error NOTIFY m3errorChanged)
+    Q_PROPERTY(QColor m3onError READ m3onError WRITE setM3onError NOTIFY m3onErrorChanged)
+    Q_PROPERTY(QColor m3errorContainer READ m3errorContainer WRITE setM3errorContainer NOTIFY m3errorContainerChanged)
+    Q_PROPERTY(QColor m3onErrorContainer READ m3onErrorContainer WRITE setM3onErrorContainer NOTIFY m3onErrorContainerChanged)
 
 public:
     explicit M3Colors(QObject *parent = nullptr) : QObject(parent) {}
 
+    Q_INVOKABLE void applyAll(const QVariantMap &colors) {
+        const bool wasBlocked = blockSignals(true);
+        for (auto it = colors.begin(); it != colors.end(); ++it) {
+            setProperty(it.key().toUtf8().constData(), it.value());
+        }
+        m_darkmode = (m_m3background.lightnessF() < 0.5);
+        blockSignals(wasBlocked);
+        emit m3colorsChanged();
+    }
+
     bool darkmode() const { return m_darkmode; }
-    void setDarkmode(bool v) { if (m_darkmode != v) { m_darkmode = v; emit m3colorsChanged(); } }
+    void setDarkmode(bool v) { if (m_darkmode != v) { m_darkmode = v; emit darkmodeChanged(); emit m3colorsChanged(); } }
 
     bool transparent() const { return m_transparent; }
-    void setTransparent(bool v) { if (m_transparent != v) { m_transparent = v; emit m3colorsChanged(); } }
+    void setTransparent(bool v) { if (m_transparent != v) { m_transparent = v; emit transparentChanged(); emit m3colorsChanged(); } }
 
     QColor m3background() const { return m_m3background; }
-    void setM3background(const QColor &v) { if (m_m3background != v) { m_m3background = v; emit m3colorsChanged(); } }
+    void setM3background(const QColor &v) { if (m_m3background != v) { m_m3background = v; emit m3backgroundChanged(); emit m3colorsChanged(); } }
 
     QColor m3onBackground() const { return m_m3onBackground; }
-    void setM3onBackground(const QColor &v) { if (m_m3onBackground != v) { m_m3onBackground = v; emit m3colorsChanged(); } }
+    void setM3onBackground(const QColor &v) { if (m_m3onBackground != v) { m_m3onBackground = v; emit m3onBackgroundChanged(); emit m3colorsChanged(); } }
 
     QColor m3surface() const { return m_m3surface; }
-    void setM3surface(const QColor &v) { if (m_m3surface != v) { m_m3surface = v; emit m3colorsChanged(); } }
+    void setM3surface(const QColor &v) { if (m_m3surface != v) { m_m3surface = v; emit m3surfaceChanged(); emit m3colorsChanged(); } }
 
     QColor m3surfaceDim() const { return m_m3surfaceDim; }
-    void setM3surfaceDim(const QColor &v) { if (m_m3surfaceDim != v) { m_m3surfaceDim = v; emit m3colorsChanged(); } }
+    void setM3surfaceDim(const QColor &v) { if (m_m3surfaceDim != v) { m_m3surfaceDim = v; emit m3surfaceDimChanged(); emit m3colorsChanged(); } }
 
     QColor m3surfaceBright() const { return m_m3surfaceBright; }
-    void setM3surfaceBright(const QColor &v) { if (m_m3surfaceBright != v) { m_m3surfaceBright = v; emit m3colorsChanged(); } }
+    void setM3surfaceBright(const QColor &v) { if (m_m3surfaceBright != v) { m_m3surfaceBright = v; emit m3surfaceBrightChanged(); emit m3colorsChanged(); } }
 
     QColor m3surfaceContainerLowest() const { return m_m3surfaceContainerLowest; }
-    void setM3surfaceContainerLowest(const QColor &v) { if (m_m3surfaceContainerLowest != v) { m_m3surfaceContainerLowest = v; emit m3colorsChanged(); } }
+    void setM3surfaceContainerLowest(const QColor &v) { if (m_m3surfaceContainerLowest != v) { m_m3surfaceContainerLowest = v; emit m3surfaceContainerLowestChanged(); emit m3colorsChanged(); } }
 
     QColor m3surfaceContainerLow() const { return m_m3surfaceContainerLow; }
-    void setM3surfaceContainerLow(const QColor &v) { if (m_m3surfaceContainerLow != v) { m_m3surfaceContainerLow = v; emit m3colorsChanged(); } }
+    void setM3surfaceContainerLow(const QColor &v) { if (m_m3surfaceContainerLow != v) { m_m3surfaceContainerLow = v; emit m3surfaceContainerLowChanged(); emit m3colorsChanged(); } }
 
     QColor m3surfaceContainer() const { return m_m3surfaceContainer; }
-    void setM3surfaceContainer(const QColor &v) { if (m_m3surfaceContainer != v) { m_m3surfaceContainer = v; emit m3colorsChanged(); } }
+    void setM3surfaceContainer(const QColor &v) { if (m_m3surfaceContainer != v) { m_m3surfaceContainer = v; emit m3surfaceContainerChanged(); emit m3colorsChanged(); } }
 
     QColor m3surfaceContainerHigh() const { return m_m3surfaceContainerHigh; }
-    void setM3surfaceContainerHigh(const QColor &v) { if (m_m3surfaceContainerHigh != v) { m_m3surfaceContainerHigh = v; emit m3colorsChanged(); } }
+    void setM3surfaceContainerHigh(const QColor &v) { if (m_m3surfaceContainerHigh != v) { m_m3surfaceContainerHigh = v; emit m3surfaceContainerHighChanged(); emit m3colorsChanged(); } }
 
     QColor m3surfaceContainerHighest() const { return m_m3surfaceContainerHighest; }
-    void setM3surfaceContainerHighest(const QColor &v) { if (m_m3surfaceContainerHighest != v) { m_m3surfaceContainerHighest = v; emit m3colorsChanged(); } }
+    void setM3surfaceContainerHighest(const QColor &v) { if (m_m3surfaceContainerHighest != v) { m_m3surfaceContainerHighest = v; emit m3surfaceContainerHighestChanged(); emit m3colorsChanged(); } }
 
     QColor m3onSurface() const { return m_m3onSurface; }
-    void setM3onSurface(const QColor &v) { if (m_m3onSurface != v) { m_m3onSurface = v; emit m3colorsChanged(); } }
+    void setM3onSurface(const QColor &v) { if (m_m3onSurface != v) { m_m3onSurface = v; emit m3onSurfaceChanged(); emit m3colorsChanged(); } }
 
     QColor m3surfaceVariant() const { return m_m3surfaceVariant; }
-    void setM3surfaceVariant(const QColor &v) { if (m_m3surfaceVariant != v) { m_m3surfaceVariant = v; emit m3colorsChanged(); } }
+    void setM3surfaceVariant(const QColor &v) { if (m_m3surfaceVariant != v) { m_m3surfaceVariant = v; emit m3surfaceVariantChanged(); emit m3colorsChanged(); } }
 
     QColor m3onSurfaceVariant() const { return m_m3onSurfaceVariant; }
-    void setM3onSurfaceVariant(const QColor &v) { if (m_m3onSurfaceVariant != v) { m_m3onSurfaceVariant = v; emit m3colorsChanged(); } }
+    void setM3onSurfaceVariant(const QColor &v) { if (m_m3onSurfaceVariant != v) { m_m3onSurfaceVariant = v; emit m3onSurfaceVariantChanged(); emit m3colorsChanged(); } }
 
     QColor m3inverseSurface() const { return m_m3inverseSurface; }
-    void setM3inverseSurface(const QColor &v) { if (m_m3inverseSurface != v) { m_m3inverseSurface = v; emit m3colorsChanged(); } }
+    void setM3inverseSurface(const QColor &v) { if (m_m3inverseSurface != v) { m_m3inverseSurface = v; emit m3inverseSurfaceChanged(); emit m3colorsChanged(); } }
 
     QColor m3inverseOnSurface() const { return m_m3inverseOnSurface; }
-    void setM3inverseOnSurface(const QColor &v) { if (m_m3inverseOnSurface != v) { m_m3inverseOnSurface = v; emit m3colorsChanged(); } }
+    void setM3inverseOnSurface(const QColor &v) { if (m_m3inverseOnSurface != v) { m_m3inverseOnSurface = v; emit m3inverseOnSurfaceChanged(); emit m3colorsChanged(); } }
 
     QColor m3outline() const { return m_m3outline; }
-    void setM3outline(const QColor &v) { if (m_m3outline != v) { m_m3outline = v; emit m3colorsChanged(); } }
+    void setM3outline(const QColor &v) { if (m_m3outline != v) { m_m3outline = v; emit m3outlineChanged(); emit m3colorsChanged(); } }
 
     QColor m3outlineVariant() const { return m_m3outlineVariant; }
-    void setM3outlineVariant(const QColor &v) { if (m_m3outlineVariant != v) { m_m3outlineVariant = v; emit m3colorsChanged(); } }
+    void setM3outlineVariant(const QColor &v) { if (m_m3outlineVariant != v) { m_m3outlineVariant = v; emit m3outlineVariantChanged(); emit m3colorsChanged(); } }
 
     QColor m3shadow() const { return m_m3shadow; }
-    void setM3shadow(const QColor &v) { if (m_m3shadow != v) { m_m3shadow = v; emit m3colorsChanged(); } }
+    void setM3shadow(const QColor &v) { if (m_m3shadow != v) { m_m3shadow = v; emit m3shadowChanged(); emit m3colorsChanged(); } }
 
     QColor m3scrim() const { return m_m3scrim; }
-    void setM3scrim(const QColor &v) { if (m_m3scrim != v) { m_m3scrim = v; emit m3colorsChanged(); } }
+    void setM3scrim(const QColor &v) { if (m_m3scrim != v) { m_m3scrim = v; emit m3scrimChanged(); emit m3colorsChanged(); } }
 
     QColor m3primary() const { return m_m3primary; }
-    void setM3primary(const QColor &v) { if (m_m3primary != v) { m_m3primary = v; emit m3colorsChanged(); } }
+    void setM3primary(const QColor &v) { if (m_m3primary != v) { m_m3primary = v; emit m3primaryChanged(); emit m3colorsChanged(); } }
 
     QColor m3onPrimary() const { return m_m3onPrimary; }
-    void setM3onPrimary(const QColor &v) { if (m_m3onPrimary != v) { m_m3onPrimary = v; emit m3colorsChanged(); } }
+    void setM3onPrimary(const QColor &v) { if (m_m3onPrimary != v) { m_m3onPrimary = v; emit m3onPrimaryChanged(); emit m3colorsChanged(); } }
 
     QColor m3primaryContainer() const { return m_m3primaryContainer; }
-    void setM3primaryContainer(const QColor &v) { if (m_m3primaryContainer != v) { m_m3primaryContainer = v; emit m3colorsChanged(); } }
+    void setM3primaryContainer(const QColor &v) { if (m_m3primaryContainer != v) { m_m3primaryContainer = v; emit m3primaryContainerChanged(); emit m3colorsChanged(); } }
 
     QColor m3onPrimaryContainer() const { return m_m3onPrimaryContainer; }
-    void setM3onPrimaryContainer(const QColor &v) { if (m_m3onPrimaryContainer != v) { m_m3onPrimaryContainer = v; emit m3colorsChanged(); } }
+    void setM3onPrimaryContainer(const QColor &v) { if (m_m3onPrimaryContainer != v) { m_m3onPrimaryContainer = v; emit m3onPrimaryContainerChanged(); emit m3colorsChanged(); } }
 
     QColor m3secondary() const { return m_m3secondary; }
-    void setM3secondary(const QColor &v) { if (m_m3secondary != v) { m_m3secondary = v; emit m3colorsChanged(); } }
+    void setM3secondary(const QColor &v) { if (m_m3secondary != v) { m_m3secondary = v; emit m3secondaryChanged(); emit m3colorsChanged(); } }
 
     QColor m3onSecondary() const { return m_m3onSecondary; }
-    void setM3onSecondary(const QColor &v) { if (m_m3onSecondary != v) { m_m3onSecondary = v; emit m3colorsChanged(); } }
+    void setM3onSecondary(const QColor &v) { if (m_m3onSecondary != v) { m_m3onSecondary = v; emit m3onSecondaryChanged(); emit m3colorsChanged(); } }
 
     QColor m3secondaryContainer() const { return m_m3secondaryContainer; }
-    void setM3secondaryContainer(const QColor &v) { if (m_m3secondaryContainer != v) { m_m3secondaryContainer = v; emit m3colorsChanged(); } }
+    void setM3secondaryContainer(const QColor &v) { if (m_m3secondaryContainer != v) { m_m3secondaryContainer = v; emit m3secondaryContainerChanged(); emit m3colorsChanged(); } }
 
     QColor m3onSecondaryContainer() const { return m_m3onSecondaryContainer; }
-    void setM3onSecondaryContainer(const QColor &v) { if (m_m3onSecondaryContainer != v) { m_m3onSecondaryContainer = v; emit m3colorsChanged(); } }
+    void setM3onSecondaryContainer(const QColor &v) { if (m_m3onSecondaryContainer != v) { m_m3onSecondaryContainer = v; emit m3onSecondaryContainerChanged(); emit m3colorsChanged(); } }
 
     QColor m3tertiary() const { return m_m3tertiary; }
-    void setM3tertiary(const QColor &v) { if (m_m3tertiary != v) { m_m3tertiary = v; emit m3colorsChanged(); } }
+    void setM3tertiary(const QColor &v) { if (m_m3tertiary != v) { m_m3tertiary = v; emit m3tertiaryChanged(); emit m3colorsChanged(); } }
 
     QColor m3onTertiary() const { return m_m3onTertiary; }
-    void setM3onTertiary(const QColor &v) { if (m_m3onTertiary != v) { m_m3onTertiary = v; emit m3colorsChanged(); } }
+    void setM3onTertiary(const QColor &v) { if (m_m3onTertiary != v) { m_m3onTertiary = v; emit m3onTertiaryChanged(); emit m3colorsChanged(); } }
 
     QColor m3tertiaryContainer() const { return m_m3tertiaryContainer; }
-    void setM3tertiaryContainer(const QColor &v) { if (m_m3tertiaryContainer != v) { m_m3tertiaryContainer = v; emit m3colorsChanged(); } }
+    void setM3tertiaryContainer(const QColor &v) { if (m_m3tertiaryContainer != v) { m_m3tertiaryContainer = v; emit m3tertiaryContainerChanged(); emit m3colorsChanged(); } }
 
     QColor m3onTertiaryContainer() const { return m_m3onTertiaryContainer; }
-    void setM3onTertiaryContainer(const QColor &v) { if (m_m3onTertiaryContainer != v) { m_m3onTertiaryContainer = v; emit m3colorsChanged(); } }
+    void setM3onTertiaryContainer(const QColor &v) { if (m_m3onTertiaryContainer != v) { m_m3onTertiaryContainer = v; emit m3onTertiaryContainerChanged(); emit m3colorsChanged(); } }
 
     QColor m3error() const { return m_m3error; }
-    void setM3error(const QColor &v) { if (m_m3error != v) { m_m3error = v; emit m3colorsChanged(); } }
+    void setM3error(const QColor &v) { if (m_m3error != v) { m_m3error = v; emit m3errorChanged(); emit m3colorsChanged(); } }
 
     QColor m3onError() const { return m_m3onError; }
-    void setM3onError(const QColor &v) { if (m_m3onError != v) { m_m3onError = v; emit m3colorsChanged(); } }
+    void setM3onError(const QColor &v) { if (m_m3onError != v) { m_m3onError = v; emit m3onErrorChanged(); emit m3colorsChanged(); } }
 
     QColor m3errorContainer() const { return m_m3errorContainer; }
-    void setM3errorContainer(const QColor &v) { if (m_m3errorContainer != v) { m_m3errorContainer = v; emit m3colorsChanged(); } }
+    void setM3errorContainer(const QColor &v) { if (m_m3errorContainer != v) { m_m3errorContainer = v; emit m3errorContainerChanged(); emit m3colorsChanged(); } }
 
     QColor m3onErrorContainer() const { return m_m3onErrorContainer; }
-    void setM3onErrorContainer(const QColor &v) { if (m_m3onErrorContainer != v) { m_m3onErrorContainer = v; emit m3colorsChanged(); } }
+    void setM3onErrorContainer(const QColor &v) { if (m_m3onErrorContainer != v) { m_m3onErrorContainer = v; emit m3onErrorContainerChanged(); emit m3colorsChanged(); } }
 
 signals:
     void m3colorsChanged();
+    void darkmodeChanged();
+    void transparentChanged();
+    void m3backgroundChanged();
+    void m3onBackgroundChanged();
+    void m3surfaceChanged();
+    void m3surfaceDimChanged();
+    void m3surfaceBrightChanged();
+    void m3surfaceContainerLowestChanged();
+    void m3surfaceContainerLowChanged();
+    void m3surfaceContainerChanged();
+    void m3surfaceContainerHighChanged();
+    void m3surfaceContainerHighestChanged();
+    void m3onSurfaceChanged();
+    void m3surfaceVariantChanged();
+    void m3onSurfaceVariantChanged();
+    void m3inverseSurfaceChanged();
+    void m3inverseOnSurfaceChanged();
+    void m3outlineChanged();
+    void m3outlineVariantChanged();
+    void m3shadowChanged();
+    void m3scrimChanged();
+    void m3primaryChanged();
+    void m3onPrimaryChanged();
+    void m3primaryContainerChanged();
+    void m3onPrimaryContainerChanged();
+    void m3secondaryChanged();
+    void m3onSecondaryChanged();
+    void m3secondaryContainerChanged();
+    void m3onSecondaryContainerChanged();
+    void m3tertiaryChanged();
+    void m3onTertiaryChanged();
+    void m3tertiaryContainerChanged();
+    void m3onTertiaryContainerChanged();
+    void m3errorChanged();
+    void m3onErrorChanged();
+    void m3errorContainerChanged();
+    void m3onErrorContainerChanged();
+
 
 private:
     bool m_darkmode = false;
@@ -470,74 +519,74 @@ private:
 
 class ColorsGroup : public QObject {
     Q_OBJECT
-    Q_PROPERTY(QColor colSubtext READ colSubtext NOTIFY colorsChanged)
-    Q_PROPERTY(QColor colLayer0 READ colLayer0 NOTIFY colorsChanged)
-    Q_PROPERTY(QColor colOnLayer0 READ colOnLayer0 NOTIFY colorsChanged)
-    Q_PROPERTY(QColor colLayer0Hover READ colLayer0Hover NOTIFY colorsChanged)
-    Q_PROPERTY(QColor colLayer0Active READ colLayer0Active NOTIFY colorsChanged)
-    Q_PROPERTY(QColor colLayer0Border READ colLayer0Border NOTIFY colorsChanged)
-    Q_PROPERTY(QColor colLayer1 READ colLayer1 NOTIFY colorsChanged)
-    Q_PROPERTY(QColor colOnLayer1 READ colOnLayer1 NOTIFY colorsChanged)
-    Q_PROPERTY(QColor colOnLayer1Inactive READ colOnLayer1Inactive NOTIFY colorsChanged)
-    Q_PROPERTY(QColor colLayer2 READ colLayer2 NOTIFY colorsChanged)
-    Q_PROPERTY(QColor colOnLayer2 READ colOnLayer2 NOTIFY colorsChanged)
-    Q_PROPERTY(QColor colOnLayer2Disabled READ colOnLayer2Disabled NOTIFY colorsChanged)
-    Q_PROPERTY(QColor colLayer1Hover READ colLayer1Hover NOTIFY colorsChanged)
-    Q_PROPERTY(QColor colLayer1Active READ colLayer1Active NOTIFY colorsChanged)
-    Q_PROPERTY(QColor colLayer2Hover READ colLayer2Hover NOTIFY colorsChanged)
-    Q_PROPERTY(QColor colLayer2Active READ colLayer2Active NOTIFY colorsChanged)
-    Q_PROPERTY(QColor colLayer2Disabled READ colLayer2Disabled NOTIFY colorsChanged)
-    Q_PROPERTY(QColor colLayer3 READ colLayer3 NOTIFY colorsChanged)
-    Q_PROPERTY(QColor colOnLayer3 READ colOnLayer3 NOTIFY colorsChanged)
-    Q_PROPERTY(QColor colLayer3Hover READ colLayer3Hover NOTIFY colorsChanged)
-    Q_PROPERTY(QColor colLayer3Active READ colLayer3Active NOTIFY colorsChanged)
-    Q_PROPERTY(QColor colLayer4 READ colLayer4 NOTIFY colorsChanged)
-    Q_PROPERTY(QColor colOnLayer4 READ colOnLayer4 NOTIFY colorsChanged)
-    Q_PROPERTY(QColor colLayer4Hover READ colLayer4Hover NOTIFY colorsChanged)
-    Q_PROPERTY(QColor colLayer4Active READ colLayer4Active NOTIFY colorsChanged)
-    Q_PROPERTY(QColor colPrimary READ colPrimary NOTIFY colorsChanged)
-    Q_PROPERTY(QColor colOnPrimary READ colOnPrimary NOTIFY colorsChanged)
-    Q_PROPERTY(QColor colPrimaryHover READ colPrimaryHover NOTIFY colorsChanged)
-    Q_PROPERTY(QColor colPrimaryActive READ colPrimaryActive NOTIFY colorsChanged)
-    Q_PROPERTY(QColor colPrimaryContainer READ colPrimaryContainer NOTIFY colorsChanged)
-    Q_PROPERTY(QColor colPrimaryContainerHover READ colPrimaryContainerHover NOTIFY colorsChanged)
-    Q_PROPERTY(QColor colPrimaryContainerActive READ colPrimaryContainerActive NOTIFY colorsChanged)
-    Q_PROPERTY(QColor colOnPrimaryContainer READ colOnPrimaryContainer NOTIFY colorsChanged)
-    Q_PROPERTY(QColor colSecondary READ colSecondary NOTIFY colorsChanged)
-    Q_PROPERTY(QColor colSecondaryHover READ colSecondaryHover NOTIFY colorsChanged)
-    Q_PROPERTY(QColor colSecondaryActive READ colSecondaryActive NOTIFY colorsChanged)
-    Q_PROPERTY(QColor colSecondaryContainer READ colSecondaryContainer NOTIFY colorsChanged)
-    Q_PROPERTY(QColor colSecondaryContainerHover READ colSecondaryContainerHover NOTIFY colorsChanged)
-    Q_PROPERTY(QColor colSecondaryContainerActive READ colSecondaryContainerActive NOTIFY colorsChanged)
-    Q_PROPERTY(QColor colTertiary READ colTertiary NOTIFY colorsChanged)
-    Q_PROPERTY(QColor colTertiaryHover READ colTertiaryHover NOTIFY colorsChanged)
-    Q_PROPERTY(QColor colTertiaryActive READ colTertiaryActive NOTIFY colorsChanged)
-    Q_PROPERTY(QColor colTertiaryContainer READ colTertiaryContainer NOTIFY colorsChanged)
-    Q_PROPERTY(QColor colTertiaryContainerHover READ colTertiaryContainerHover NOTIFY colorsChanged)
-    Q_PROPERTY(QColor colTertiaryContainerActive READ colTertiaryContainerActive NOTIFY colorsChanged)
-    Q_PROPERTY(QColor colOnSecondaryContainer READ colOnSecondaryContainer NOTIFY colorsChanged)
-    Q_PROPERTY(QColor colSurfaceContainerLow READ colSurfaceContainerLow NOTIFY colorsChanged)
-    Q_PROPERTY(QColor colSurfaceContainer READ colSurfaceContainer NOTIFY colorsChanged)
-    Q_PROPERTY(QColor colSurfaceContainerHigh READ colSurfaceContainerHigh NOTIFY colorsChanged)
-    Q_PROPERTY(QColor colSurfaceContainerHighest READ colSurfaceContainerHighest NOTIFY colorsChanged)
-    Q_PROPERTY(QColor colSurfaceContainerHighestHover READ colSurfaceContainerHighestHover NOTIFY colorsChanged)
-    Q_PROPERTY(QColor colSurfaceContainerHighestActive READ colSurfaceContainerHighestActive NOTIFY colorsChanged)
-    Q_PROPERTY(QColor colOnSurface READ colOnSurface NOTIFY colorsChanged)
-    Q_PROPERTY(QColor colOnSurfaceVariant READ colOnSurfaceVariant NOTIFY colorsChanged)
-    Q_PROPERTY(QColor colTooltip READ colTooltip NOTIFY colorsChanged)
-    Q_PROPERTY(QColor colOnTooltip READ colOnTooltip NOTIFY colorsChanged)
-    Q_PROPERTY(QColor colScrim READ colScrim NOTIFY colorsChanged)
-    Q_PROPERTY(QColor colShadow READ colShadow NOTIFY colorsChanged)
-    Q_PROPERTY(QColor colOutline READ colOutline NOTIFY colorsChanged)
-    Q_PROPERTY(QColor colOutlineVariant READ colOutlineVariant NOTIFY colorsChanged)
-    Q_PROPERTY(QColor colError READ colError NOTIFY colorsChanged)
-    Q_PROPERTY(QColor colErrorHover READ colErrorHover NOTIFY colorsChanged)
-    Q_PROPERTY(QColor colErrorActive READ colErrorActive NOTIFY colorsChanged)
-    Q_PROPERTY(QColor colOnError READ colOnError NOTIFY colorsChanged)
-    Q_PROPERTY(QColor colErrorContainer READ colErrorContainer NOTIFY colorsChanged)
-    Q_PROPERTY(QColor colErrorContainerHover READ colErrorContainerHover NOTIFY colorsChanged)
-    Q_PROPERTY(QColor colErrorContainerActive READ colErrorContainerActive NOTIFY colorsChanged)
-    Q_PROPERTY(QColor colOnErrorContainer READ colOnErrorContainer NOTIFY colorsChanged)
+    Q_PROPERTY(QColor colSubtext READ colSubtext NOTIFY colSubtextChanged)
+    Q_PROPERTY(QColor colLayer0 READ colLayer0 NOTIFY colLayer0Changed)
+    Q_PROPERTY(QColor colOnLayer0 READ colOnLayer0 NOTIFY colOnLayer0Changed)
+    Q_PROPERTY(QColor colLayer0Hover READ colLayer0Hover NOTIFY colLayer0HoverChanged)
+    Q_PROPERTY(QColor colLayer0Active READ colLayer0Active NOTIFY colLayer0ActiveChanged)
+    Q_PROPERTY(QColor colLayer0Border READ colLayer0Border NOTIFY colLayer0BorderChanged)
+    Q_PROPERTY(QColor colLayer1 READ colLayer1 NOTIFY colLayer1Changed)
+    Q_PROPERTY(QColor colOnLayer1 READ colOnLayer1 NOTIFY colOnLayer1Changed)
+    Q_PROPERTY(QColor colOnLayer1Inactive READ colOnLayer1Inactive NOTIFY colOnLayer1InactiveChanged)
+    Q_PROPERTY(QColor colLayer2 READ colLayer2 NOTIFY colLayer2Changed)
+    Q_PROPERTY(QColor colOnLayer2 READ colOnLayer2 NOTIFY colOnLayer2Changed)
+    Q_PROPERTY(QColor colOnLayer2Disabled READ colOnLayer2Disabled NOTIFY colOnLayer2DisabledChanged)
+    Q_PROPERTY(QColor colLayer1Hover READ colLayer1Hover NOTIFY colLayer1HoverChanged)
+    Q_PROPERTY(QColor colLayer1Active READ colLayer1Active NOTIFY colLayer1ActiveChanged)
+    Q_PROPERTY(QColor colLayer2Hover READ colLayer2Hover NOTIFY colLayer2HoverChanged)
+    Q_PROPERTY(QColor colLayer2Active READ colLayer2Active NOTIFY colLayer2ActiveChanged)
+    Q_PROPERTY(QColor colLayer2Disabled READ colLayer2Disabled NOTIFY colLayer2DisabledChanged)
+    Q_PROPERTY(QColor colLayer3 READ colLayer3 NOTIFY colLayer3Changed)
+    Q_PROPERTY(QColor colOnLayer3 READ colOnLayer3 NOTIFY colOnLayer3Changed)
+    Q_PROPERTY(QColor colLayer3Hover READ colLayer3Hover NOTIFY colLayer3HoverChanged)
+    Q_PROPERTY(QColor colLayer3Active READ colLayer3Active NOTIFY colLayer3ActiveChanged)
+    Q_PROPERTY(QColor colLayer4 READ colLayer4 NOTIFY colLayer4Changed)
+    Q_PROPERTY(QColor colOnLayer4 READ colOnLayer4 NOTIFY colOnLayer4Changed)
+    Q_PROPERTY(QColor colLayer4Hover READ colLayer4Hover NOTIFY colLayer4HoverChanged)
+    Q_PROPERTY(QColor colLayer4Active READ colLayer4Active NOTIFY colLayer4ActiveChanged)
+    Q_PROPERTY(QColor colPrimary READ colPrimary NOTIFY colPrimaryChanged)
+    Q_PROPERTY(QColor colOnPrimary READ colOnPrimary NOTIFY colOnPrimaryChanged)
+    Q_PROPERTY(QColor colPrimaryHover READ colPrimaryHover NOTIFY colPrimaryHoverChanged)
+    Q_PROPERTY(QColor colPrimaryActive READ colPrimaryActive NOTIFY colPrimaryActiveChanged)
+    Q_PROPERTY(QColor colPrimaryContainer READ colPrimaryContainer NOTIFY colPrimaryContainerChanged)
+    Q_PROPERTY(QColor colPrimaryContainerHover READ colPrimaryContainerHover NOTIFY colPrimaryContainerHoverChanged)
+    Q_PROPERTY(QColor colPrimaryContainerActive READ colPrimaryContainerActive NOTIFY colPrimaryContainerActiveChanged)
+    Q_PROPERTY(QColor colOnPrimaryContainer READ colOnPrimaryContainer NOTIFY colOnPrimaryContainerChanged)
+    Q_PROPERTY(QColor colSecondary READ colSecondary NOTIFY colSecondaryChanged)
+    Q_PROPERTY(QColor colSecondaryHover READ colSecondaryHover NOTIFY colSecondaryHoverChanged)
+    Q_PROPERTY(QColor colSecondaryActive READ colSecondaryActive NOTIFY colSecondaryActiveChanged)
+    Q_PROPERTY(QColor colSecondaryContainer READ colSecondaryContainer NOTIFY colSecondaryContainerChanged)
+    Q_PROPERTY(QColor colSecondaryContainerHover READ colSecondaryContainerHover NOTIFY colSecondaryContainerHoverChanged)
+    Q_PROPERTY(QColor colSecondaryContainerActive READ colSecondaryContainerActive NOTIFY colSecondaryContainerActiveChanged)
+    Q_PROPERTY(QColor colTertiary READ colTertiary NOTIFY colTertiaryChanged)
+    Q_PROPERTY(QColor colTertiaryHover READ colTertiaryHover NOTIFY colTertiaryHoverChanged)
+    Q_PROPERTY(QColor colTertiaryActive READ colTertiaryActive NOTIFY colTertiaryActiveChanged)
+    Q_PROPERTY(QColor colTertiaryContainer READ colTertiaryContainer NOTIFY colTertiaryContainerChanged)
+    Q_PROPERTY(QColor colTertiaryContainerHover READ colTertiaryContainerHover NOTIFY colTertiaryContainerHoverChanged)
+    Q_PROPERTY(QColor colTertiaryContainerActive READ colTertiaryContainerActive NOTIFY colTertiaryContainerActiveChanged)
+    Q_PROPERTY(QColor colOnSecondaryContainer READ colOnSecondaryContainer NOTIFY colOnSecondaryContainerChanged)
+    Q_PROPERTY(QColor colSurfaceContainerLow READ colSurfaceContainerLow NOTIFY colSurfaceContainerLowChanged)
+    Q_PROPERTY(QColor colSurfaceContainer READ colSurfaceContainer NOTIFY colSurfaceContainerChanged)
+    Q_PROPERTY(QColor colSurfaceContainerHigh READ colSurfaceContainerHigh NOTIFY colSurfaceContainerHighChanged)
+    Q_PROPERTY(QColor colSurfaceContainerHighest READ colSurfaceContainerHighest NOTIFY colSurfaceContainerHighestChanged)
+    Q_PROPERTY(QColor colSurfaceContainerHighestHover READ colSurfaceContainerHighestHover NOTIFY colSurfaceContainerHighestHoverChanged)
+    Q_PROPERTY(QColor colSurfaceContainerHighestActive READ colSurfaceContainerHighestActive NOTIFY colSurfaceContainerHighestActiveChanged)
+    Q_PROPERTY(QColor colOnSurface READ colOnSurface NOTIFY colOnSurfaceChanged)
+    Q_PROPERTY(QColor colOnSurfaceVariant READ colOnSurfaceVariant NOTIFY colOnSurfaceVariantChanged)
+    Q_PROPERTY(QColor colTooltip READ colTooltip NOTIFY colTooltipChanged)
+    Q_PROPERTY(QColor colOnTooltip READ colOnTooltip NOTIFY colOnTooltipChanged)
+    Q_PROPERTY(QColor colScrim READ colScrim NOTIFY colScrimChanged)
+    Q_PROPERTY(QColor colShadow READ colShadow NOTIFY colShadowChanged)
+    Q_PROPERTY(QColor colOutline READ colOutline NOTIFY colOutlineChanged)
+    Q_PROPERTY(QColor colOutlineVariant READ colOutlineVariant NOTIFY colOutlineVariantChanged)
+    Q_PROPERTY(QColor colError READ colError NOTIFY colErrorChanged)
+    Q_PROPERTY(QColor colErrorHover READ colErrorHover NOTIFY colErrorHoverChanged)
+    Q_PROPERTY(QColor colErrorActive READ colErrorActive NOTIFY colErrorActiveChanged)
+    Q_PROPERTY(QColor colOnError READ colOnError NOTIFY colOnErrorChanged)
+    Q_PROPERTY(QColor colErrorContainer READ colErrorContainer NOTIFY colErrorContainerChanged)
+    Q_PROPERTY(QColor colErrorContainerHover READ colErrorContainerHover NOTIFY colErrorContainerHoverChanged)
+    Q_PROPERTY(QColor colErrorContainerActive READ colErrorContainerActive NOTIFY colErrorContainerActiveChanged)
+    Q_PROPERTY(QColor colOnErrorContainer READ colOnErrorContainer NOTIFY colOnErrorContainerChanged)
 
 public:
     explicit ColorsGroup(M3Colors *m3, QObject *parent = nullptr);
@@ -614,6 +663,75 @@ public:
 
 signals:
     void colorsChanged();
+    void colSubtextChanged();
+    void colLayer0Changed();
+    void colOnLayer0Changed();
+    void colLayer0HoverChanged();
+    void colLayer0ActiveChanged();
+    void colLayer0BorderChanged();
+    void colLayer1Changed();
+    void colOnLayer1Changed();
+    void colOnLayer1InactiveChanged();
+    void colLayer2Changed();
+    void colOnLayer2Changed();
+    void colOnLayer2DisabledChanged();
+    void colLayer1HoverChanged();
+    void colLayer1ActiveChanged();
+    void colLayer2HoverChanged();
+    void colLayer2ActiveChanged();
+    void colLayer2DisabledChanged();
+    void colLayer3Changed();
+    void colOnLayer3Changed();
+    void colLayer3HoverChanged();
+    void colLayer3ActiveChanged();
+    void colLayer4Changed();
+    void colOnLayer4Changed();
+    void colLayer4HoverChanged();
+    void colLayer4ActiveChanged();
+    void colPrimaryChanged();
+    void colOnPrimaryChanged();
+    void colPrimaryHoverChanged();
+    void colPrimaryActiveChanged();
+    void colPrimaryContainerChanged();
+    void colPrimaryContainerHoverChanged();
+    void colPrimaryContainerActiveChanged();
+    void colOnPrimaryContainerChanged();
+    void colSecondaryChanged();
+    void colSecondaryHoverChanged();
+    void colSecondaryActiveChanged();
+    void colSecondaryContainerChanged();
+    void colSecondaryContainerHoverChanged();
+    void colSecondaryContainerActiveChanged();
+    void colTertiaryChanged();
+    void colTertiaryHoverChanged();
+    void colTertiaryActiveChanged();
+    void colTertiaryContainerChanged();
+    void colTertiaryContainerHoverChanged();
+    void colTertiaryContainerActiveChanged();
+    void colOnSecondaryContainerChanged();
+    void colSurfaceContainerLowChanged();
+    void colSurfaceContainerChanged();
+    void colSurfaceContainerHighChanged();
+    void colSurfaceContainerHighestChanged();
+    void colSurfaceContainerHighestHoverChanged();
+    void colSurfaceContainerHighestActiveChanged();
+    void colOnSurfaceChanged();
+    void colOnSurfaceVariantChanged();
+    void colTooltipChanged();
+    void colOnTooltipChanged();
+    void colScrimChanged();
+    void colShadowChanged();
+    void colOutlineChanged();
+    void colOutlineVariantChanged();
+    void colErrorChanged();
+    void colErrorHoverChanged();
+    void colErrorActiveChanged();
+    void colOnErrorChanged();
+    void colErrorContainerChanged();
+    void colErrorContainerHoverChanged();
+    void colErrorContainerActiveChanged();
+    void colOnErrorContainerChanged();
+
 
 private:
     M3Colors *m_m3;
@@ -685,6 +803,8 @@ signals:
     void extraBackgroundTintChanged();
 
 private:
+    void scheduleRecompute();
+    bool m_recomputePending = false;
     M3Colors *m_m3colors;
     ColorsGroup *m_colors;
     RoundingGroup *m_rounding;
