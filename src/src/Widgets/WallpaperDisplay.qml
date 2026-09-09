@@ -7,12 +7,13 @@ Item {
     property string source:   ""
     property int    fillMode: Image.PreserveAspectCrop
     property bool   playing:  true
+    property size   targetSize: Qt.binding(() => Qt.size(Screen.width * Screen.devicePixelRatio, Screen.height * Screen.devicePixelRatio))
 
     readonly property string resolvedSource: source.startsWith("/") ? "file://" + source : source
     readonly property bool isReady: _isAnimated 
         ? animImg.status === AnimatedImage.Ready
         : _isVideo
-            ? mediaplayer.status === MediaPlayer.LoadedMedia
+            ? (videoLoader.item ? videoLoader.item.status === MediaPlayer.LoadedMedia : false)
             : staticImg.status === Image.Ready
     
     readonly property bool _isAnimated: {
@@ -21,14 +22,13 @@ Item {
     }
 
     readonly property bool _isVideo: {
-        console.log("Checking if source is video:", source)
         const s = source.toLowerCase()
         return s.endsWith(".mp4") || s.endsWith(".mkv") || s.endsWith(".webm")
     }
 
     onPlayingChanged: {
-        if (_isVideo) {
-            playing ? mediaplayer.play() : mediaplayer.pause()
+        if (_isVideo && videoLoader.item) {
+            playing ? videoLoader.item.play() : videoLoader.item.pause()
         }
     }
 
@@ -37,9 +37,8 @@ Item {
         anchors.fill: parent
         fillMode: root.fillMode
         source: root._isAnimated || root._isVideo ? "" : root.resolvedSource
-        sourceSize: Qt.size(Screen.width * Screen.devicePixelRatio, Screen.height * Screen.devicePixelRatio)
+        sourceSize: root.targetSize
         visible: !root._isAnimated && !root._isVideo
-        cache: false
     }
 
     AnimatedImage {
@@ -47,33 +46,46 @@ Item {
         anchors.fill: parent
         fillMode: root.fillMode
         source: root._isAnimated ? root.resolvedSource : ""
-        sourceSize: Qt.size(Screen.width * Screen.devicePixelRatio, Screen.height * Screen.devicePixelRatio)
+        sourceSize: root.targetSize
         visible: root._isAnimated
         playing: root._isAnimated && root.playing
-        cache: false
     }
 
-    MediaPlayer {
-        id: mediaplayer
-        source: root._isVideo ? root.resolvedSource : ""
-        loops: MediaPlayer.Infinite
-        videoOutput: videoOutput
-
-        onErrorOccurred: (error, errorString) => {
-            console.log("ERROR Multimedia:", error, errorString)
-        }
-        
-        audioOutput: AudioOutput {
-            muted: true 
-        }
-
-        onSourceChanged: if (root.playing && root._isVideo) play()
-    }
-
-    VideoOutput {
-        id: videoOutput
+    Loader {
+        id: videoLoader
+        active: root._isVideo
         anchors.fill: parent
-        fillMode: VideoOutput.PreserveAspectCrop
         visible: root._isVideo
+        
+        sourceComponent: Item {
+            id: videoContainer
+            property int status: mediaplayer.status
+            function play() { mediaplayer.play() }
+            function pause() { mediaplayer.pause() }
+
+            MediaPlayer {
+                id: mediaplayer
+                source: root.resolvedSource
+                loops: MediaPlayer.Infinite
+                videoOutput: videoOutput
+                
+                onErrorOccurred: (error, errorString) => {
+                    console.log("ERROR Multimedia:", error, errorString)
+                }
+                
+                audioOutput: AudioOutput {
+                    muted: true 
+                }
+
+                onSourceChanged: if (root.playing) play()
+                Component.onCompleted: if (root.playing) play()
+            }
+
+            VideoOutput {
+                id: videoOutput
+                anchors.fill: parent
+                fillMode: root.fillMode
+            }
+        }
     }
 }
