@@ -8,64 +8,6 @@
 #include <QDebug>
 #include "../Functions/ColorUtils.hpp"
 
-static QString bezierToString(const QVector<qreal> &curve) {
-    if (curve.isEmpty()) return QString();
-    QStringList items;
-    for (qreal val : curve) {
-        items << QString::number(val);
-    }
-    return QString("[%1]").arg(items.join(", "));
-}
-
-static QString easingTypeToString(int type) {
-    if (type == 26) return "Easing.BezierSpline";
-    if (type == 8) return "Easing.OutExpo";
-    return "Easing.Linear";
-}
-
-static QQmlEngine *findEngine(QObject *obj) {
-    if (!obj) return nullptr;
-    if (QQmlEngine *eng = qmlEngine(obj)) return eng;
-    if (QQmlContext *ctx = qmlContext(obj)) return ctx->engine();
-    return findEngine(obj->parent());
-}
-
-QQmlComponent *AnimationSpec::numberAnimation() {
-    if (!m_numberAnimation) {
-        QQmlEngine *engine = findEngine(this);
-        if (engine) {
-            m_numberAnimation = new QQmlComponent(engine, this);
-            QString qml = QString("import QtQuick\nNumberAnimation {\n duration: %1\n easing.type: %2%3\n}")
-                .arg(m_duration)
-                .arg(easingTypeToString(m_type))
-                .arg(m_bezierCurve.isEmpty() ? QString() : QString("\n easing.bezierCurve: %1").arg(bezierToString(m_bezierCurve)));
-            m_numberAnimation->setData(qml.toUtf8(), QUrl("file:///AnimationSpecNumber.qml"));
-            if (m_numberAnimation->isError()) {
-                qWarning() << "AnimationSpec numberAnimation error:" << m_numberAnimation->errorString();
-            }
-        }
-    }
-    return m_numberAnimation;
-}
-
-QQmlComponent *AnimationSpec::colorAnimation() {
-    if (!m_colorAnimation) {
-        QQmlEngine *engine = findEngine(this);
-        if (engine) {
-            m_colorAnimation = new QQmlComponent(engine, this);
-            QString qml = QString("import QtQuick\nColorAnimation {\n duration: %1\n easing.type: %2%3\n}")
-                .arg(m_duration)
-                .arg(easingTypeToString(m_type))
-                .arg(m_bezierCurve.isEmpty() ? QString() : QString("\n easing.bezierCurve: %1").arg(bezierToString(m_bezierCurve)));
-            m_colorAnimation->setData(qml.toUtf8(), QUrl("file:///AnimationSpecColor.qml"));
-            if (m_colorAnimation->isError()) {
-                qWarning() << "AnimationSpec colorAnimation error:" << m_colorAnimation->errorString();
-            }
-        }
-    }
-    return m_colorAnimation;
-}
-
 ColorsGroup::ColorsGroup(M3Colors *m3, QObject *parent)
     : QObject(parent), m_m3(m3)
 {

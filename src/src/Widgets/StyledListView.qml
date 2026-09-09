@@ -67,85 +67,117 @@ ListView {
     }
 
     add: Transition {
-        animations: animateAppearance ? [
-            Appearance?.animation.elementMove.numberAnimation.createObject(this, {
-                properties: popin ? "opacity,scale" : "opacity",
-                from: 0,
-                to: 1,
-            }),
-        ] : []
+        enabled: animateAppearance
+            NumberAnimation {
+    duration: Appearance.animation.elementMove.duration
+    easing.type: Appearance.animation.elementMove.type
+    easing.bezierCurve: Appearance.animation.elementMove.bezierCurve
+    properties: popin ? "opacity,scale" : "opacity"
+                from: 0
+                to: 1
+}
     }
 
     addDisplaced: Transition {
-        animations: animateAppearance ? [
-            Appearance?.animation.elementMove.numberAnimation.createObject(this, {
-                property: "y",
-            }),
-            Appearance?.animation.elementMove.numberAnimation.createObject(this, {
-                properties: popin ? "opacity,scale" : "opacity",
-                to: 1,
-            }),
-        ] : []
+        enabled: animateAppearance
+            NumberAnimation {
+    duration: Appearance.animation.elementMove.duration
+    easing.type: Appearance.animation.elementMove.type
+    easing.bezierCurve: Appearance.animation.elementMove.bezierCurve
+    property: "y"
+}
+            NumberAnimation {
+    duration: Appearance.animation.elementMove.duration
+    easing.type: Appearance.animation.elementMove.type
+    easing.bezierCurve: Appearance.animation.elementMove.bezierCurve
+    properties: popin ? "opacity,scale" : "opacity"
+                to: 1
+}
     }
     
     displaced: Transition {
-        animations: root.animateMovement ? [
-            Appearance?.animation.elementMove.numberAnimation.createObject(this, {
-                property: "y",
-            }),
-            Appearance?.animation.elementMove.numberAnimation.createObject(this, {
-                properties: "opacity,scale",
-                to: 1,
-            }),
-        ] : []
+        enabled: root.animateMovement
+            NumberAnimation {
+    duration: Appearance.animation.elementMove.duration
+    easing.type: Appearance.animation.elementMove.type
+    easing.bezierCurve: Appearance.animation.elementMove.bezierCurve
+    property: "y"
+}
+            NumberAnimation {
+    duration: Appearance.animation.elementMove.duration
+    easing.type: Appearance.animation.elementMove.type
+    easing.bezierCurve: Appearance.animation.elementMove.bezierCurve
+    properties: "opacity,scale"
+                to: 1
+}
     } 
 
     move: Transition {
-        animations: root.animateMovement ? [
-            Appearance?.animation.elementMove.numberAnimation.createObject(this, {
-                property: "y",
-            }),
-            Appearance?.animation.elementMove.numberAnimation.createObject(this, {
-                properties: "opacity,scale",
-                to: 1,
-            }),
-        ] : []
+        enabled: root.animateMovement
+            NumberAnimation {
+    duration: Appearance.animation.elementMove.duration
+    easing.type: Appearance.animation.elementMove.type
+    easing.bezierCurve: Appearance.animation.elementMove.bezierCurve
+    property: "y"
+}
+            NumberAnimation {
+    duration: Appearance.animation.elementMove.duration
+    easing.type: Appearance.animation.elementMove.type
+    easing.bezierCurve: Appearance.animation.elementMove.bezierCurve
+    properties: "opacity,scale"
+                to: 1
+}
     }
     moveDisplaced: Transition {
-        animations: root.animateMovement ? [
-            Appearance?.animation.elementMove.numberAnimation.createObject(this, {
-                property: "y",
-            }),
-            Appearance?.animation.elementMove.numberAnimation.createObject(this, {
-                properties: "opacity,scale",
-                to: 1,
-            }),
-        ] : []
+        enabled: root.animateMovement
+            NumberAnimation {
+    duration: Appearance.animation.elementMove.duration
+    easing.type: Appearance.animation.elementMove.type
+    easing.bezierCurve: Appearance.animation.elementMove.bezierCurve
+    property: "y"
+}
+            NumberAnimation {
+    duration: Appearance.animation.elementMove.duration
+    easing.type: Appearance.animation.elementMove.type
+    easing.bezierCurve: Appearance.animation.elementMove.bezierCurve
+    properties: "opacity,scale"
+                to: 1
+}
     }
 
     remove: Transition {
-        animations: animateAppearance ? [
-            Appearance?.animation.elementMove.numberAnimation.createObject(this, {
-                property: "x",
-                to: root.width + root.removeOvershoot,
-            }),
-            Appearance?.animation.elementMove.numberAnimation.createObject(this, {
-                property: "opacity",
-                to: 0,
-            })
-        ] : []
+        enabled: animateAppearance
+            NumberAnimation {
+    duration: Appearance.animation.elementMove.duration
+    easing.type: Appearance.animation.elementMove.type
+    easing.bezierCurve: Appearance.animation.elementMove.bezierCurve
+    property: "x"
+                to: root.width + root.removeOvershoot
+}
+            NumberAnimation {
+    duration: Appearance.animation.elementMove.duration
+    easing.type: Appearance.animation.elementMove.type
+    easing.bezierCurve: Appearance.animation.elementMove.bezierCurve
+    property: "opacity"
+                to: 0
+}
     }
 
     // This is movement when something is removed, not removing animation!
     removeDisplaced: Transition { 
-        animations: animateAppearance ? [
-            Appearance?.animation.elementMove.numberAnimation.createObject(this, {
-                property: "y",
-            }),
-            Appearance?.animation.elementMove.numberAnimation.createObject(this, {
-                properties: "opacity,scale",
-                to: 1,
-            }),
-        ] : []
+        enabled: animateAppearance
+            NumberAnimation {
+    duration: Appearance.animation.elementMove.duration
+    easing.type: Appearance.animation.elementMove.type
+    easing.bezierCurve: Appearance.animation.elementMove.bezierCurve
+    property: "y"
+}
+            NumberAnimation {
+    duration: Appearance.animation.elementMove.duration
+    easing.type: Appearance.animation.elementMove.type
+    easing.bezierCurve: Appearance.animation.elementMove.bezierCurve
+    properties: "opacity,scale"
+                to: 1
+}
     }
 }

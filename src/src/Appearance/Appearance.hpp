@@ -384,8 +384,6 @@ class AnimationSpec : public QObject {
     Q_PROPERTY(int type READ type CONSTANT)
     Q_PROPERTY(QVector<qreal> bezierCurve READ bezierCurve CONSTANT)
     Q_PROPERTY(int velocity READ velocity CONSTANT)
-    Q_PROPERTY(QQmlComponent* numberAnimation READ numberAnimation CONSTANT)
-    Q_PROPERTY(QQmlComponent* colorAnimation READ colorAnimation CONSTANT)
 
 public:
     AnimationSpec(int duration, int type, QVector<qreal> bezierCurve, int velocity, QObject *parent = nullptr)
@@ -396,16 +394,12 @@ public:
     QVector<qreal> bezierCurve() const { return m_bezierCurve; }
     int velocity() const { return m_velocity; }
 
-    QQmlComponent *numberAnimation();
-    QQmlComponent *colorAnimation();
 
 private:
     int m_duration;
     int m_type;
     QVector<qreal> m_bezierCurve;
     int m_velocity;
-    QQmlComponent *m_numberAnimation = nullptr;
-    QQmlComponent *m_colorAnimation = nullptr;
 };
 
 // Easing.BezierSpline in QML == QEasingCurve::BezierSpline == 26

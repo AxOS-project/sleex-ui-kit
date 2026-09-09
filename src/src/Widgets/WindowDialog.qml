@@ -23,7 +23,11 @@ Rectangle {
 
     color: root.show ? Appearance.colors.colScrim : ColorUtils.transparentize(Appearance.colors.colScrim)
     Behavior on color {
-        animation: Appearance.animation.elementMoveFast.colorAnimation.createObject(this)
+        animation: ColorAnimation {
+    duration: Appearance.animation.elementMoveFast.duration
+    easing.type: Appearance.animation.elementMoveFast.type
+    easing.bezierCurve: Appearance.animation.elementMoveFast.bezierCurve
+}
     }
     visible: dialogBackground.implicitHeight > 0
 
@@ -82,7 +86,11 @@ Rectangle {
             spacing: 16
             opacity: root.show ? 1 : 0
             Behavior on opacity {
-                animation: Appearance.animation.elementMoveFast.numberAnimation.createObject(this)
+                animation: NumberAnimation {
+    duration: Appearance.animation.elementMoveFast.duration
+    easing.type: Appearance.animation.elementMoveFast.type
+    easing.bezierCurve: Appearance.animation.elementMoveFast.bezierCurve
+}
             }
 
         }

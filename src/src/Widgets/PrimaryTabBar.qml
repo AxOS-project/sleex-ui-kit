@@ -79,11 +79,19 @@ ColumnLayout {
             radius: Appearance?.rounding.full ?? 9999
 
             Behavior on x {
-                animation: Appearance?.animation.elementMove.numberAnimation.createObject(this)
+                animation: NumberAnimation {
+    duration: Appearance.animation.elementMove.duration
+    easing.type: Appearance.animation.elementMove.type
+    easing.bezierCurve: Appearance.animation.elementMove.bezierCurve
+}
             }
 
             Behavior on implicitWidth {
-                animation: Appearance?.animation.elementMove.numberAnimation.createObject(this)
+                animation: NumberAnimation {
+    duration: Appearance.animation.elementMove.duration
+    easing.type: Appearance.animation.elementMove.type
+    easing.bezierCurve: Appearance.animation.elementMove.bezierCurve
+}
             }
         }
     }
