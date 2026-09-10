@@ -39,6 +39,7 @@ Item {
     }
 
     Loader {
+        asynchronous: true
         active: root.fill
         anchors.fill: parent
         

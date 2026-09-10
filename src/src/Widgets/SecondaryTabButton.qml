@@ -132,6 +132,7 @@ TabButton {
             spacing: 0
             
             Loader {
+        asynchronous: true
                 id: iconLoader
                 active: buttonIcon?.length > 0
                 sourceComponent: buttonIcon?.length > 0 ? materialSymbolComponent : null

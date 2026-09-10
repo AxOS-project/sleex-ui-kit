@@ -30,6 +30,7 @@ Item {
     }
 
     Loader {
+        asynchronous: true
         active: root.colorize
         anchors.fill: iconImage
         sourceComponent: ColorOverlay {

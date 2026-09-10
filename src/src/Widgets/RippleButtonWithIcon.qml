@@ -29,6 +29,7 @@ RippleButton {
         Item {
             implicitWidth: Math.max(materialIconLoader.implicitWidth, nerdIconLoader.implicitWidth)
             Loader {
+        asynchronous: true
                 id: materialIconLoader
                 anchors.centerIn: parent
                 active: !nerdIcon
@@ -40,6 +41,7 @@ RippleButton {
                 }
             }
             Loader {
+        asynchronous: true
                 id: nerdIconLoader
                 anchors.centerIn: parent
                 active: nerdIcon
@@ -52,6 +54,7 @@ RippleButton {
             }
         }
         Loader {
+        asynchronous: true
             sourceComponent: buttonWithIconRoot.mainContentComponent
             Layout.alignment: Qt.AlignVCenter
         }

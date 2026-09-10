@@ -18,6 +18,7 @@ Item {
     readonly property bool internalVisibleCondition: (extraVisibleCondition && (parent.hovered === undefined || parent?.hovered)) || alternativeVisibleCondition
 
     Loader {
+        asynchronous: true
         id: tooltipLoader
         anchors.fill: parent
         active: internalVisibleCondition

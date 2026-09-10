@@ -52,6 +52,7 @@ Item {
     }
 
     Loader {
+        asynchronous: true
         id: videoLoader
         active: root._isVideo
         anchors.fill: parent

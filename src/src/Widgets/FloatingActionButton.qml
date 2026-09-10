@@ -37,6 +37,7 @@ RippleButton {
             text: root.iconText
         }
         Loader {
+        asynchronous: true
             active: true
             sourceComponent: Revealer {
                 visible: root.expanded || implicitWidth > 0

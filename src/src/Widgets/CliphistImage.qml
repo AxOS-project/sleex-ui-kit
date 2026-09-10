@@ -93,6 +93,7 @@ Rectangle {
     }
 
     Loader {
+        asynchronous: true
         id: blurLoader
         active: root.blur
         anchors.fill: image
