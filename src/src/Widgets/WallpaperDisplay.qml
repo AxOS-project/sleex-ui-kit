@@ -7,7 +7,7 @@ Item {
     property string source:   ""
     property int    fillMode: Image.PreserveAspectCrop
     property bool   playing:  true
-    property size   targetSize: Qt.binding(() => Qt.size(Screen.width * Screen.devicePixelRatio, Screen.height * Screen.devicePixelRatio))
+    property size   targetSize: Qt.size(Screen.width * Screen.devicePixelRatio, Screen.height * Screen.devicePixelRatio)
 
     readonly property string resolvedSource: source.startsWith("/") ? "file://" + source : source
     readonly property bool isReady: _isAnimated 
