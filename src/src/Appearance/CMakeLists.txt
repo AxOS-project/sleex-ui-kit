@@ -11,6 +11,8 @@ target_link_libraries(SleexUiKitAppearance PRIVATE Qt6::Gui SleexUiKitFunctions)
 target_sources(SleexUiKitAppearance PRIVATE
     Appearance.hpp
     Appearance.cpp
+    MaterialThemeLoader.hpp
+    MaterialThemeLoader.cpp
 )
 
 install(DIRECTORY ${SLEEX_UI_KIT_QML_ROOT}/SleexUiKit/Appearance/

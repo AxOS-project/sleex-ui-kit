@@ -398,6 +398,8 @@ Appearance::Appearance(QObject *parent)
     m_animation = new AnimationGroup(m_animationCurves, this);
     m_sizes = new SizesGroup(this);
 
+    m_themeLoader = new MaterialThemeLoader(m_m3colors, this);
+
     connect(m_m3colors, &M3Colors::m3colorsChanged, this, [this]() {
         scheduleRecompute();
     });

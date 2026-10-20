@@ -9,6 +9,10 @@
 #include <QtQml/qqmlregistration.h>
 #include <QQmlComponent>
 
+#include "MaterialThemeLoader.hpp"
+
+class MaterialThemeLoader;
+
 class M3Colors : public QObject {
     Q_OBJECT
     Q_PROPERTY(bool darkmode READ darkmode WRITE setDarkmode NOTIFY darkmodeChanged)
@@ -56,6 +60,22 @@ public:
         const bool wasBlocked = blockSignals(true);
         for (auto it = colors.begin(); it != colors.end(); ++it) {
             setProperty(it.key().toUtf8().constData(), it.value());
+        }
+        m_darkmode = (m_m3background.lightnessF() < 0.5);
+        blockSignals(wasBlocked);
+        emit m3colorsChanged();
+    }
+
+    Q_INVOKABLE void resetToDefaults() {
+        const M3Colors defaults;
+        const QMetaObject *meta = metaObject();
+        const bool wasBlocked = blockSignals(true);
+        for (int i = meta->propertyOffset(); i < meta->propertyCount(); ++i) {
+            const QMetaProperty prop = meta->property(i);
+            // Only reset m3* color properties so we don't clobber 'transparent'
+            if (qstrncmp(prop.name(), "m3", 2) == 0) {
+                prop.write(this, prop.read(&defaults));
+            }
         }
         m_darkmode = (m_m3background.lightnessF() < 0.5);
         blockSignals(wasBlocked);
@@ -215,7 +235,7 @@ signals:
 
 
 private:
-    bool m_darkmode = false;
+    bool m_darkmode = true;
     bool m_transparent = false;
     QColor m_m3background = QColor("#161217");
     QColor m_m3onBackground = QColor("#EAE0E7");
@@ -765,9 +785,13 @@ class Appearance : public QObject {
     Q_PROPERTY(qreal contentTransparency READ contentTransparency WRITE setContentTransparency NOTIFY contentTransparencyChanged)
     Q_PROPERTY(bool extraBackgroundTint READ extraBackgroundTint WRITE setExtraBackgroundTint NOTIFY extraBackgroundTintChanged)
 
+    Q_PROPERTY(QObject* themeLoader READ themeLoader CONSTANT);
+
+
 public:
     explicit Appearance(QObject *parent = nullptr);
-
+    
+    QObject *themeLoader() const { return m_themeLoader; }
     QObject *m3colors() const { return m_m3colors; }
     QObject *colors() const { return m_colors; }
     QObject *rounding() const { return m_rounding; }
@@ -799,6 +823,7 @@ signals:
 private:
     void scheduleRecompute();
     bool m_recomputePending = false;
+    MaterialThemeLoader *m_themeLoader;
     M3Colors *m_m3colors;
     ColorsGroup *m_colors;
     RoundingGroup *m_rounding;
