@@ -37,6 +37,7 @@ Rectangle {
         return match ? parseInt(match[2]) : 0;
     }
     property real scale: {
+        if (imageWidth <= 0 || imageHeight <= 0) return 1;
         return Math.min(root.maxWidth / imageWidth, root.maxHeight / imageHeight, 1);
     }
 
@@ -45,7 +46,12 @@ Rectangle {
     implicitHeight: imageHeight * scale
     implicitWidth: imageWidth * scale
 
-    Component.onCompleted: {
+    onEntryChanged: {
+        if (!root.entry) {
+            root.source = "";
+            return;
+        }
+        decodeImageProcess.running = false;
         decodeImageProcess.running = true;
     }
 
