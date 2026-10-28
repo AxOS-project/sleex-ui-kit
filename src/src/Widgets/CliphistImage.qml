@@ -13,7 +13,7 @@ Rectangle {
     property bool blur: false
     property string blurText: "Image hidden"
 
-    property string imageDecodePath: "file:///tmp/sleex/media/cliphist"
+    property string imageDecodePath: "/tmp/sleex/media/cliphist"
     property string imageDecodeFileName: `${entryNumber}`
     property string imageDecodeFilePath: `${imageDecodePath}/${imageDecodeFileName}`
     property string source
@@ -65,6 +65,7 @@ Rectangle {
     // Kill any in-flight decode before removing the temp file; prevents onExited
     // from writing back to root after this component has been destroyed.
     Component.onDestruction: {
+        decodeImageProcess.running = false;
         Quickshell.execDetached(["bash", "-c", `[ -f '${imageDecodeFilePath}' ] && rm -f '${imageDecodeFilePath}'`]);
     }
 
@@ -81,7 +82,7 @@ Rectangle {
         id: image
         anchors.fill: parent
 
-        source: Qt.resolvedUrl(root.source)
+        source: root.source ? `file://${root.source}` : ""
         fillMode: Image.PreserveAspectFit
         antialiasing: true
         asynchronous: true
