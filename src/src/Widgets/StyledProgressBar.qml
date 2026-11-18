@@ -83,10 +83,15 @@ ProgressBar {
                 target: root
                 function onValueChanged() { wavyFill.requestPaint(); }
                 function onHighlightColorChanged() { wavyFill.requestPaint(); }
+                function onSpermAmplitudeMultiplierChanged() {
+                    if (root.visible && (root.Window.window?.visible ?? false)) {
+                        wavyFill.requestPaint();
+                    }
+                }
             }
             Timer {
                 interval: 1000 / root.spermFps
-                running: root.animateSperm
+                running: root.animateSperm && root.sperm && root.visible && (root.Window.window?.visible ?? false)
                 repeat: root.sperm
                 onTriggered: wavyFill.requestPaint()
             }
