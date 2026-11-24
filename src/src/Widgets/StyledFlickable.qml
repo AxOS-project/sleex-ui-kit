@@ -6,44 +6,66 @@ Flickable {
     maximumFlickVelocity: 3500
     boundsBehavior: Flickable.DragOverBounds
 
-    property real touchpadScrollFactor: typeof Config !== "undefined" ? (Config?.options?.interactions?.scrolling?.touchpadScrollFactor ?? 100) : 100
-    property real mouseScrollFactor: typeof Config !== "undefined" ? (Config?.options?.interactions?.scrolling?.mouseScrollFactor ?? 50) : 50
+    property real touchpadScrollFactor: typeof Config !== "undefined" ? (Config?.options?.interactions?.scrolling?.touchpadScrollFactor ?? 1.8) : 1.8
+    property real mouseScrollFactor: typeof Config !== "undefined" ? (Config?.options?.interactions?.scrolling?.mouseScrollFactor ?? 90) : 90
     property real mouseScrollDeltaThreshold: typeof Config !== "undefined" ? (Config?.options?.interactions?.scrolling?.mouseScrollDeltaThreshold ?? 120) : 120
+    property bool fasterTouchpadScroll: typeof Config !== "undefined" ? (Config?.options?.interactions?.scrolling?.fasterTouchpadScroll ?? true) : true
+
     // Accumulated scroll destination so wheel deltas stack while animating
     property real scrollTargetY: 0
 
-    MouseArea {
-        visible: typeof Config !== "undefined" ? (Config?.options?.interactions?.scrolling?.fasterTouchpadScroll ?? false) : false
-        anchors.fill: parent
-        acceptedButtons: Qt.NoButton
-        onWheel: function(wheelEvent) {
-            const delta = wheelEvent.angleDelta.y / root.mouseScrollDeltaThreshold;
-            // The angleDelta.y of a touchpad is usually small and continuous,
-            // while that of a mouse wheel is typically in multiples of ±120.
-            var scrollFactor = Math.abs(wheelEvent.angleDelta.y) >= root.mouseScrollDeltaThreshold ? root.mouseScrollFactor : root.touchpadScrollFactor;
+    // N'active l'animation lissée que pendant le wheel/touchpad, pas pendant un drag/flick manuel
+    property bool smoothWheelActive: false
 
+    NumberAnimation {
+        id: scrollAnim
+        target: root
+        property: "contentY"
+        to: root.scrollTargetY
+        duration: Appearance.animation.scroll.duration
+        easing.type: Appearance.animation.scroll.type
+        easing.bezierCurve: Appearance.animation.scroll.bezierCurve
+        onStopped: root.smoothWheelActive = false
+    }
+
+    WheelHandler {
+        id: wheelHandler
+        acceptedDevices: PointerDevice.Mouse | PointerDevice.TouchPad
+        onWheel: function(event) {
             const maxY = Math.max(0, root.contentHeight - root.height);
+            if (maxY <= 0)
+                return;
+
             const base = scrollAnim.running ? root.scrollTargetY : root.contentY;
-            var targetY = Math.max(0, Math.min(base - delta * scrollFactor, maxY));
+            let stepPx = 0;
 
-            root.scrollTargetY = targetY;
-            root.contentY = targetY;
-            wheelEvent.accepted = true;
+            // 1. Touchpad avec pixelDelta disponible (le cas le plus courant sur Wayland)
+            if (event.pixelDelta.y !== 0) {
+                const factor = root.fasterTouchpadScroll ? root.touchpadScrollFactor : 1.0;
+                stepPx = event.pixelDelta.y * factor;
+            } else {
+                // 2. Fallback sur angleDelta (molette souris ou touchpad sans pixelDelta)
+                const isMouseWheel = Math.abs(event.angleDelta.y) >= root.mouseScrollDeltaThreshold;
+                if (isMouseWheel) {
+                    const notches = event.angleDelta.y / root.mouseScrollDeltaThreshold;
+                    stepPx = notches * root.mouseScrollFactor;
+                } else {
+                    const factor = root.fasterTouchpadScroll ? (root.touchpadScrollFactor / 60.0) : (1.0 / 60.0);
+                    stepPx = event.angleDelta.y * factor;
+                }
+            }
+
+            const nextTargetY = Math.max(0, Math.min(base - stepPx, maxY));
+            root.scrollTargetY = nextTargetY;
+            root.smoothWheelActive = true;
+            scrollAnim.restart();
+            event.accepted = true;
         }
     }
 
-    Behavior on contentY {
-        NumberAnimation {
-            id: scrollAnim
-            duration: Appearance.animation.scroll.duration
-            easing.type: Appearance.animation.scroll.type
-            easing.bezierCurve: Appearance.animation.scroll.bezierCurve
-        }
-    }
-
-    // Keep target synced when not animating (e.g., drag/flick or programmatic changes)
+    // Keep target synced when not animating via wheel (e.g., drag/flick or programmatic changes)
     onContentYChanged: {
-        if (!scrollAnim.running) {
+        if (!root.smoothWheelActive && !scrollAnim.running) {
             root.scrollTargetY = root.contentY;
         }
     }
